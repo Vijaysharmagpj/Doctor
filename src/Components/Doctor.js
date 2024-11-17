@@ -1,9 +1,12 @@
 import React from "react";
+import DoctorCard from "../Card Component/DoctorCard";
+import Footer from "./Footer";
 
 const Doctor = () => {
   return (
     <>
-      <h1>Doctor</h1>
+      <DoctorCard/>
+      <Footer/>
     </>
   );
 };

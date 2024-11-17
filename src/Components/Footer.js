@@ -13,7 +13,7 @@ const Footer=()=>{
         <div className="container">
             <div className="address">
             <p>Address</p>
-            <p>Jadopur Road, Gopalganj Pincode:841428</p>
+            <p>Jadopur Road, Gopalganj Pincode: 841428</p>
             <FaFacebookF/>
             <FaLinkedinIn/>
             <FaInstagram/>

@@ -5,6 +5,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { IoCallOutline } from "react-icons/io5";
 import { MdNotificationsActive } from "react-icons/md";
+import { IoMdLogOut } from "react-icons/io";
 
 const Navbar = () => {
   return (
@@ -29,6 +30,7 @@ const Navbar = () => {
         <FaFacebookF/>
         <LuInstagram/>
         <MdNotificationsActive/>
+        <IoMdLogOut/>
         </div>
         <div className="contact">
           <IoCallOutline/> Call Our Service +91 8271779635
