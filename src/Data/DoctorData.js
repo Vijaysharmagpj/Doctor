@@ -11,6 +11,13 @@ export const DoctorData=[
         qualification:"MBBS",
         location:"Gopalganj",
         img:"",
+        specialist :"General Physician"
+    },
+    {
+        name:"Dr.Pramod Kumar Sharma",
+        qualification:"MBBS",
+        location:"Gopalganj",
+        img:"",
         specialist :"Homeopathic Pediatrician"
     },
     {
