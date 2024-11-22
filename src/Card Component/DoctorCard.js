@@ -1,7 +1,13 @@
 import React from "react";
 import { DoctorData } from "../Data/DoctorData";
+import { useNavigate } from "react-router-dom";
+
 
 const DoctorCard = () => {
+  const navigate=useNavigate();
+  const navigateAppointment=()=>{
+    navigate("/bookappointment")
+  }
   return (
     <div className="container mx-auto px-4 py-12 bg-[#000814] text-gray-300">
       <h2 className="text-4xl font-bold text-center text-[#18BCFC] mb-8">
@@ -25,7 +31,9 @@ const DoctorCard = () => {
               <p className="text-2xl font-bold text-[#FA6A28]">{data.name}</p>
               <p className="text-lg text-gray-400">{data.qualification}</p>
               <p className="text-md text-gray-500">{data.location}</p>
-              <button className="mt-4 bg-[#FFD60A] text-black px-6 py-2 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
+              <button
+              onClick={navigateAppointment} 
+              className="mt-4 bg-[#FFD60A] text-black px-6 py-2 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
                 Book Appointment
               </button>
             </div>

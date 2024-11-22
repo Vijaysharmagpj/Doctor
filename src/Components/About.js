@@ -3,8 +3,13 @@ import DoctorList from "../Card Component/DoctorList";
 import Footer from "./Footer";
 import aboutus from "../../src/assets/about us.jpg"
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate=useNavigate();
+  const navigateletConnect=()=>{
+    navigate("/contact")
+  }
   return (
     <>
      <Navbar />
@@ -13,7 +18,9 @@ const About = () => {
   <div className="wrapper flex flex-col lg:flex-row items-center lg:space-x-12 space-y-8 lg:space-y-0">
     <div className="text lg:w-1/2 space-y-6">
       <h2 className="text-4xl font-bold text-[#18BCFC]">About Us</h2>
-      <button className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
+      <button
+      onClick={navigateletConnect}
+       className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
         Let's Connect
       </button>
     </div>

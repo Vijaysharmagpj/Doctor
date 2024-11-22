@@ -6,8 +6,19 @@ import { GrFormAdd } from "react-icons/gr";
 import Whychooseus from "./Whychooseus";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
+  const navigate=useNavigate();
+
+  const navigatebookappointment=()=>{
+    navigate("/bookappointment")
+  }
+
+  const navigateSpecialDoctor=()=>{
+    navigate("/doctor")
+  }
   return (
     <>
       <Navbar />
@@ -24,7 +35,9 @@ const Home = () => {
               offering personalized treatments that ensure safe and effective
               results for a healthier you.
             </p>
-            <button className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
+            <button
+            onClick={navigatebookappointment} 
+            className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
               Book Appointment
             </button>
           </div>
@@ -80,7 +93,9 @@ const Home = () => {
               <div className="point1 bg-[#001223] p-6 rounded-lg shadow-xl text-center text-gray-300 space-y-4">
                 <FaUserDoctor className="text-3xl text-[#FA6A28] mx-auto" />
                 <p className="text-xl font-semibold">Find Special Doctor</p>
-                <button className="bg-[#FFD60A] text-black px-6 py-2 rounded-lg">
+                <button
+                onClick={navigateSpecialDoctor} 
+                className="bg-[#FFD60A] text-black px-6 py-2 rounded-lg">
                   Doctor
                 </button>
               </div>

@@ -6,6 +6,7 @@ import { LuInstagram } from "react-icons/lu";
 import { IoCallOutline } from "react-icons/io5";
 import contactus from "../../src/assets/contactus.jpg"
 import Navbar from "./Navbar";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   // State to manage form data
@@ -24,11 +25,9 @@ const Contact = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted with Data:", formData);
-    // Here you can handle your form submission logic, like sending data to a server.
+    toast.success("Request Send successfully!")
   };
 
   return (
