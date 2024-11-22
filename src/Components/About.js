@@ -2,10 +2,12 @@ import React from "react";
 import DoctorList from "../Card Component/DoctorList";
 import Footer from "./Footer";
 import aboutus from "../../src/assets/about us.jpg"
+import Navbar from "./Navbar";
 
 const About = () => {
   return (
     <>
+     <Navbar />
       <div className="container mx-auto px-4 py-12 space-y-16 bg-[#000814] text-gray-300">
   {/* About Us Section */}
   <div className="wrapper flex flex-col lg:flex-row items-center lg:space-x-12 space-y-8 lg:space-y-0">

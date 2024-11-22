@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const Firstaid = () => {
   // State to manage both search and add medicine
@@ -27,6 +28,8 @@ const Firstaid = () => {
   };
 
   return (
+    <>
+     <Navbar />
     <div className="bg-[#000814] text-gray-300 py-12 px-4">
       <div className="container mx-auto space-y-12">
         {/* Search Section */}
@@ -76,6 +79,7 @@ const Firstaid = () => {
       </div>
       <Footer />
     </div>
+    </>
   );
 };
 

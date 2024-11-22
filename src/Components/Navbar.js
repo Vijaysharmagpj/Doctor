@@ -6,14 +6,19 @@ import { LuInstagram } from "react-icons/lu";
 import { IoCallOutline } from "react-icons/io5";
 import { MdNotificationsActive } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    navigate('/');
+  };
   return (
     <div className="flex justify-between items-center p-4 bg-[#171C26] text-white">
       {/* Left side of the Navbar */}
       <div className="flex space-x-6">
         <nav className="hidden md:flex space-x-6">
-          <Link to="/" className="hover:text-gray-300">Home</Link>
+          <Link to="/home" className="hover:text-gray-300">Home</Link>
           <Link to="/about" className="hover:text-gray-300">About</Link>
           <Link to="/treatment" className="hover:text-gray-300">Treatment</Link>
           <Link to="/doctor" className="hover:text-gray-300">Doctor</Link>
@@ -47,7 +52,9 @@ const Navbar = () => {
           <IoCallOutline className="text-lg" />
           <span>Call Our Service +91 8271779635</span>
         </div>
-        <IoMdLogOut className="hover:text-gray-300 cursor-pointer text-xl" />
+        <IoMdLogOut
+        onClick={handleLogout} 
+        className="hover:text-gray-300 cursor-pointer text-xl" />
       </div>
     </div>
   );

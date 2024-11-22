@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from './Components/Navbar';
 import PathRouter from './Routes/PathRouter';
+import { Toaster } from 'react-hot-toast';
 
 const App=()=>{
   return(
     <>
-    <Navbar/>
+   <Toaster/>
     <PathRouter/>
     </>
   )

@@ -4,10 +4,12 @@ import breakfast from "../../src/assets/breakfast.jpeg"
 import snacks from "../../src/assets/Snacks.jpeg"
 import Lunch from "../../src/assets/lunch.jpeg"
 import dinner from "../../src/assets/Dinner.jpeg"
+import Navbar from "./Navbar";
 
 const Diet = () => {
   return (
     <>
+     <Navbar />
       <div className="bg-[#000814] text-gray-300 p-8">
         <div className="container mx-auto space-y-16">
           {/* Page Header */}

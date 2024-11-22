@@ -9,6 +9,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import { IoIosCreate } from "react-icons/io";
 import { CiSaveDown1 } from "react-icons/ci";
 import { RiFileEditLine } from "react-icons/ri";
+import Navbar from "./Navbar";
 
 const Treatment = () => {
   const [formData, setFormData] = useState({
@@ -57,6 +58,8 @@ const Treatment = () => {
   };
 
   return (
+    <>
+     <Navbar />
     <div className="p-4 space-y-8 bg-[#171C26] text-white">
       <div className="text-center">
         <h1 className="text-2xl font-bold">SHARMA HOMEO CLINIC</h1>
@@ -500,6 +503,7 @@ const Treatment = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

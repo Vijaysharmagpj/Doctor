@@ -5,6 +5,7 @@ import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { IoCallOutline } from "react-icons/io5";
 import contactus from "../../src/assets/contactus.jpg"
+import Navbar from "./Navbar";
 
 const Contact = () => {
   // State to manage form data
@@ -31,6 +32,8 @@ const Contact = () => {
   };
 
   return (
+    <>
+     <Navbar />
     <div className="bg-[#000814] text-gray-300 p-8">
       <div className="container mx-auto space-y-12">
         {/* Contact Us Section */}
@@ -128,6 +131,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

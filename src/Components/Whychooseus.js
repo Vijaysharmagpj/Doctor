@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Whychooseus = () => {
+  const navigate=useNavigate();
+  const navigateContact=()=>{
+    navigate("/contact")
+  }
   return (
     <div className="container mx-auto px-4 py-12 bg-[#000814] text-gray-300">
       <div className="wrapper flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12">
@@ -37,7 +43,9 @@ const Whychooseus = () => {
 
       {/* Button Section */}
       <div className="text-center mt-8">
-        <button className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
+        <button
+        onClick={navigateContact}
+         className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
           Contact Us
         </button>
       </div>
