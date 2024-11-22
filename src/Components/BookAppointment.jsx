@@ -61,6 +61,7 @@ const BookAppointment = () => {
               </label>
               <input
                 type="text"
+                required
                 placeholder="Enter Your Name"
                 name="name"
                 value={formData.name}
@@ -75,6 +76,7 @@ const BookAppointment = () => {
               </label>
               <input
                 type="email"
+                required
                 placeholder="Enter Your Email"
                 name="email"
                 value={formData.email}
@@ -90,6 +92,7 @@ const BookAppointment = () => {
                 </label>
                 <input
                   type="text"
+                  required
                   placeholder="Enter Your Phone Number"
                   name="phone"
                   value={formData.phone}
@@ -104,6 +107,7 @@ const BookAppointment = () => {
                 </label>
                 <select
                   name="doctor"
+                  required
                   value={formData.doctor}
                   onChange={handleChange}
                   className="w-full p-3 rounded-md bg-[#0F172A] text-gray-300 border border-gray-600 focus:ring-2 focus:ring-[#18BCFC] focus:outline-none"
@@ -127,6 +131,7 @@ const BookAppointment = () => {
                 </label>
                 <input
                   type="time"
+                  required
                   placeholder="Enter Your time"
                   name="time"
                   value={formData.time}
@@ -141,6 +146,7 @@ const BookAppointment = () => {
                 </label>
                 <input
                   type="date"
+                  required
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
@@ -155,6 +161,7 @@ const BookAppointment = () => {
               </label>
               <textarea
                 rows={2}
+                required
                 placeholder="Enter Your Disease"
                 name="disease"
                 value={formData.disease}

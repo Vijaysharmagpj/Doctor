@@ -39,6 +39,7 @@ const Firstaid = () => {
           <div className="flex justify-center items-center space-x-4 bg-[#001D3D] p-4 rounded-lg shadow-lg">
             <input
               type="text"
+              required
               placeholder="Search..."
               name="search"
               className="bg-transparent border-2 border-[#FA6A28] text-white p-2 rounded-md focus:outline-none"
@@ -54,6 +55,7 @@ const Firstaid = () => {
           <form className="bg-[#001D3D] p-8 rounded-lg shadow-lg mx-auto max-w-lg mb-[10px]" onSubmit={handleSubmit}>
             <input
               type="text"
+              required
               placeholder="Enter Disease"
               name="disease"
               value={formData.disease}
@@ -62,6 +64,7 @@ const Firstaid = () => {
             />
             <input
               type="text"
+              required
               placeholder="Enter Medicine"
               name="medicine"
               value={formData.medicine}

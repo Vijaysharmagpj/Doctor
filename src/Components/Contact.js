@@ -28,6 +28,11 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     toast.success("Request Send successfully!")
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    })
   };
 
   return (
@@ -89,6 +94,7 @@ const Contact = () => {
               <label className="text-[#FA6A28]">Your Name</label>
               <input
                 type="text"
+                required
                 placeholder="Enter Your Name"
                 name="name"
                 value={formData.name}
@@ -100,6 +106,7 @@ const Contact = () => {
               <label className="text-[#FA6A28]">Your Email</label>
               <input
                 type="email"
+                required
                 placeholder="Enter Your Email"
                 name="email"
                 value={formData.email}
@@ -111,6 +118,7 @@ const Contact = () => {
               <label className="text-[#FA6A28]">Your Message</label>
               <textarea
                 placeholder="Write Your Message"
+                required
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
