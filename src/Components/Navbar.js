@@ -13,8 +13,13 @@ const Navbar = () => {
   const handleLogout = () => {
     navigate('/');
   };
+
+  const handleNotification=()=>{
+    navigate("/bookappointmentlist");
+  }
+
   return (
-    <div className="flex justify-between items-center p-4 bg-[#171C26] text-white">
+    <div className="flex justify-between w-full items-center p-4 bg-[#171C26] text-white fixed ">
       {/* Left side of the Navbar */}
       <div className="flex space-x-6">
         <nav className="hidden md:flex space-x-6">
@@ -44,7 +49,9 @@ const Navbar = () => {
         </a>
           <FaFacebookF className="hover:text-gray-300 cursor-pointer" />
           <LuInstagram className="hover:text-gray-300 cursor-pointer" />
-          <MdNotificationsActive className="hover:text-gray-300 cursor-pointer" />
+          <MdNotificationsActive 
+          onClick={handleNotification}
+           className="hover:text-gray-300 cursor-pointer" />
         </div>
 
         {/* Contact */}

@@ -15,7 +15,7 @@ const About = () => {
      <Navbar />
       <div className="container mx-auto px-4 py-12 space-y-16 bg-[#000814] text-gray-300">
   {/* About Us Section */}
-  <div className="wrapper flex flex-col lg:flex-row items-center lg:space-x-12 space-y-8 lg:space-y-0">
+  <div className="wrapper flex flex-col lg:flex-row items-center lg:space-x-12 space-y-8 lg:space-y-0 mt-[20px]">
     <div className="text lg:w-1/2 space-y-6">
       <h2 className="text-4xl font-bold text-[#18BCFC]">About Us</h2>
       <button

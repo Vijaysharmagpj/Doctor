@@ -7,6 +7,7 @@ import { IoCallOutline } from "react-icons/io5";
 import contactus from "../../src/assets/contactus.jpg"
 import Navbar from "./Navbar";
 import toast from "react-hot-toast";
+import Footer from "./Footer";
 
 const Contact = () => {
   // State to manage form data
@@ -39,9 +40,9 @@ const Contact = () => {
     <>
      <Navbar />
     <div className="bg-[#000814] text-gray-300 p-8">
-      <div className="container mx-auto space-y-12">
+      <div className="container mx-auto space-y-12 mt-[40px]">
         {/* Contact Us Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+        <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 ">
           <div className="text-center md:text-left space-y-4 md:w-1/2">
             <h2 className="text-4xl font-bold text-[#18BCFC]">Contact Us</h2>
             <p className="text-xl max-w-3xl mx-auto">
@@ -138,6 +139,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
+    <Footer/>
     </>
   );
 };

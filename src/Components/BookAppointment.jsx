@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import bookappointment from "../../src/assets/bookappointment.gif";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const BookAppointment = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,8 @@ const BookAppointment = () => {
     doctor: "",
     disease: "",
   });
+
+  const navigate=useNavigate();
 
 
   const handleChange = (e) => {
@@ -37,9 +41,12 @@ const BookAppointment = () => {
         doctor: "",
         disease: "",
       });
+      navigate("/bookappointmentlist")
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="bg-[#000814] min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl">
         <div className="w-full md:w-1/2">
@@ -180,6 +187,7 @@ const BookAppointment = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

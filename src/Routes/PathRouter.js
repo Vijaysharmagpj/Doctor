@@ -11,6 +11,7 @@ import LoginForm from "../LoginLogout/LoginForm"
 import SignupForm from "../LoginLogout/SignupForm";
 import BookAppointment from "../Components/BookAppointment";
 import Error404 from "../Components/Error404";
+import BookAppointmentList from "../Components/BookAppointmentList";
 
 
 const PathRouter = () => {
@@ -26,6 +27,7 @@ const PathRouter = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/bookappointment" element={<BookAppointment/>}/>
         <Route path="/404page" element={<Error404/>}/>
+        <Route path="/bookappointmentlist" element={<BookAppointmentList/>}/>
 
         <Route path="/" element={<LoginForm/>} />
         <Route path="/signup" element={<SignupForm/>} />

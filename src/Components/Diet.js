@@ -11,7 +11,7 @@ const Diet = () => {
     <>
      <Navbar />
       <div className="bg-[#000814] text-gray-300 p-8">
-        <div className="container mx-auto space-y-16">
+        <div className="container mx-auto space-y-16 mt-[30px]">
           {/* Page Header */}
           <h1 className="text-4xl font-bold text-center text-[#18BCFC]">General Diet Plan</h1>
           <p className="text-lg text-center max-w-3xl mx-auto leading-relaxed">

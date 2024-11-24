@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   function submitHandler(e) {
     e.preventDefault();
-    toast.success("Login Success");
+    toast.success("Login Successfully");
     navigate("/home");
   }
 

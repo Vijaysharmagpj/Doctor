@@ -33,7 +33,7 @@ const Firstaid = () => {
     <div className="bg-[#000814] text-gray-300 py-12 px-4">
       <div className="container mx-auto space-y-12">
         {/* Search Section */}
-        <div className="text-center">
+        <div className="text-center mt-[20px]">
           <h1 className="text-4xl font-bold text-[#18BCFC] mb-4">Search Medicine</h1>
           <p className="text-lg mb-6">Search Medicine According To Disease</p>
           <div className="flex justify-center items-center space-x-4 bg-[#001D3D] p-4 rounded-lg shadow-lg">
