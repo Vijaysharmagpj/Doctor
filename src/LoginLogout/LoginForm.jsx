@@ -26,10 +26,6 @@ const LoginForm = () => {
     navigate("/home");
   }
 
-  const handleRegister = () => {
-    navigate("/signup");
-  };
-
   return (
     <div className="flex flex-col lg:flex-row min-h-screen items-center justify-center bg-[#000814] px-4 py-8 lg:px-16 gap-8">
       <div className="text-center mb-8">
@@ -118,13 +114,7 @@ const LoginForm = () => {
           </button>
 
           {/* Register Section */}
-          <p className="text-center">Don't have an account? Register Now</p>
-          <button
-            onClick={handleRegister}
-            className="w-full py-3 bg-[#FFD60A] text-[#1E293B] font-semibold rounded-lg shadow-md hover:bg-[#FFC107] transition"
-          >
-            Register Now
-          </button>
+          <p className="text-center">Don't have an account? <span className="text-[#FFD60A] cursor-pointer underline font-semibold" onClick={()=>navigate("/signup")}>Register Now</span></p>
         </form>
       </div>
     </div>

@@ -170,6 +170,7 @@ const SignupForm = () => {
           >
             Create Account
           </button>
+          <p className="text-center">Already have an account? <span className="text-[#FFD60A] cursor-pointer underline font-semibold" onClick={()=>navigate("/")}>Login</span></p>
         </form>
       </div>
     </div>

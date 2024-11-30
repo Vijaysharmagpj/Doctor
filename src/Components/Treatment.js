@@ -61,7 +61,7 @@ const Treatment = () => {
     <>
      <Navbar />
     <div className="p-4 space-y-8 bg-[#171C26] text-white">
-      <div className="text-center mt-[40px]">
+      <div className="text-center mt-[50px]">
         <h1 className="text-2xl font-bold">SHARMA HOMEO CLINIC</h1>
       </div>
 

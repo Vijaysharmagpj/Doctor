@@ -40,7 +40,7 @@ const Contact = () => {
     <>
      <Navbar />
     <div className="bg-[#000814] text-gray-300 p-8">
-      <div className="container mx-auto space-y-12 mt-[40px]">
+      <div className="container mx-auto space-y-12 mt-[60px]">
         {/* Contact Us Section */}
         <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 ">
           <div className="text-center md:text-left space-y-4 md:w-1/2">

@@ -14,8 +14,8 @@ const Footer = () => {
           <p className="text-lg font-bold mb-2">Address</p>
           <p className="mb-4">Jadopur Road, Gopalganj Pincode: 841428</p>
           <div className="flex space-x-4 text-xl">
-            <FaFacebookF className="hover:text-gray-300 cursor-pointer" />
             <FaLinkedinIn className="hover:text-gray-300 cursor-pointer" />
+            <FaFacebookF className="hover:text-gray-300 cursor-pointer" />
             <FaInstagram className="hover:text-gray-300 cursor-pointer" />
             <FaXTwitter className="hover:text-gray-300 cursor-pointer" />
           </div>
@@ -26,16 +26,24 @@ const Footer = () => {
           <p className="text-lg font-bold mb-2">More Services</p>
           <ul className="space-y-2">
             <li>
-              <Link to="/about" className="hover:text-gray-300">About</Link>
+              <Link to="/about" className="hover:text-gray-300">
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/doctor" className="hover:text-gray-300">Doctor</Link>
+              <Link to="/doctor" className="hover:text-gray-300">
+                Doctor
+              </Link>
             </li>
             <li>
-              <Link to="/diet" className="hover:text-gray-300">Diet</Link>
+              <Link to="/diet" className="hover:text-gray-300">
+                Diet
+              </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-gray-300">Contact</Link>
+              <Link to="/contact" className="hover:text-gray-300">
+                Contact
+              </Link>
             </li>
           </ul>
         </div>

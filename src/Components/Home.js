@@ -24,7 +24,7 @@ const Home = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-12 space-y-16 bg-[#000814] text-gray-300 ">
         {/* Meet Our Expert Homeopathic Doctor Section */}
-        <div className="our-doctor flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 mt-[10px]">
+        <div className="our-doctor flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 mt-[50px]">
           <div className="doctor-text lg:w-1/2 space-y-4 text-center lg:text-left">
             <h1 className="text-4xl font-bold text-[#18BCFC]">
               Meet Our Expert Homeopathic Doctor
