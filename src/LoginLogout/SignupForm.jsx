@@ -128,7 +128,7 @@ const SignupForm = () => {
               />
               <span
                 onClick={() => setShowCreatePass(!showCreatePass)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400"
+                className="absolute right-3 top-1/2 mt-[12px] transform -translate-y-1/2 cursor-pointer text-gray-400"
               >
                 {showCreatePass ? (
                   <AiOutlineEyeInvisible fontSize={24} />
@@ -152,7 +152,7 @@ const SignupForm = () => {
               />
               <span
                 onClick={() => setShowConfirmPass(!showConfirmPass)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400"
+                className="absolute right-3 top-1/2 mt-[12px] transform -translate-y-1/2 cursor-pointer text-gray-400"
               >
                 {showConfirmPass ? (
                   <AiOutlineEyeInvisible fontSize={24} />
