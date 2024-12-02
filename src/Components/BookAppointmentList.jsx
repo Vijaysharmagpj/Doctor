@@ -7,7 +7,7 @@ const BookAppointmentList = () => {
     <>
       <Navbar />
       <div className="p-6 min-h-screen" style={{ backgroundColor: "#171C26" }}>
-        <h2 className="text-3xl font-bold text-center mb-6 mt-[40px]" style={{ color: "#E2B609" }}>
+        <h2 className="text-3xl font-bold text-center mb-6 mt-[70px]" style={{ color: "#E2B609" }}>
           Book Appointment List
         </h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">

@@ -48,11 +48,11 @@ const BookAppointment = () => {
     <>
     <Navbar/>
     <div className="bg-[#000814] min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl">
-        <div className="w-full md:w-1/2">
-          <h1 className="text-2xl font-bold text-center text-[#FFD60A] mb-6">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl mt-[70px]">
+      <h1 className="text-2xl font-bold text-center text-[#FFD60A] mb-6">
             Book Your Appointment
           </h1>
+        <div className="w-full md:w-1/2">
           <img
             src={bookappointment}
             alt="Book Appointment"
