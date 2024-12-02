@@ -75,7 +75,6 @@ const Contact = () => {
               <FaLinkedinIn />
               <FaFacebookF />
               <LuInstagram />
-              <MdNotificationsActive />
             </div>
           </div>
 

@@ -13,7 +13,7 @@ const DoctorCard = () => {
       <h2 className="text-4xl font-bold text-center text-[#18BCFC] mb-8 mt-[50px]">
         Our Doctors
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 text-center">
         {DoctorData.map((data, index) => (
           <div
             key={index}
