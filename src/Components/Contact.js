@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdWifiCalling3, MdMarkEmailRead, MdNotificationsActive } from "react-icons/md";
+import { MdWifiCalling3, MdMarkEmailRead } from "react-icons/md";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
@@ -10,14 +10,13 @@ import toast from "react-hot-toast";
 import Footer from "./Footer";
 
 const Contact = () => {
-  // State to manage form data
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  // Handle input change and update state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -54,7 +53,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Information Section */}
         <div className="space-y-6">
           <div className="bg-[#1A2632] p-6 rounded-lg">
             <h3 className="text-2xl font-semibold text-[#18BCFC]">Our Frequency</h3>
@@ -78,7 +76,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Us Card */}
           <div className="bg-[#1A2632] p-6 rounded-lg text-center">
             <p className="text-2xl font-semibold text-white">Have Any Query? Feel Free to Contact</p>
             <IoCallOutline className="text-4xl text-[#FFD60A] mx-auto my-4" />
@@ -86,7 +83,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Get In Touch Form */}
         <div className="bg-[#000814] p-6 rounded-lg space-y-6">
           <h1 className="text-4xl font-bold text-[#18BCFC] text-center">Get In Touch</h1>
           <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
