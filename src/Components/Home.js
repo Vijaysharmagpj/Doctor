@@ -7,6 +7,8 @@ import Whychooseus from "./Whychooseus";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import caredoctor from "../../src/assets/care doctor.jpg";
+
 
 const Home = () => {
 
@@ -72,12 +74,12 @@ const Home = () => {
         <div className="img-container flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 bg-[#001223] p-8 rounded-lg shadow-lg">
           <div className="img lg:w-1/2">
             <img
-              src=""
+              src={caredoctor}
               alt="find care"
               className="w-full rounded-lg shadow-xl"
             />
           </div>
-          <div className="care-text lg:w-1/2 space-y-6">
+          <div className="care-text lg:w-1/2 space-y-6 ml-[5px]">
             <h1 className="text-3xl font-bold text-[#18BCFC]">
               Find Care Doctor And Hospital At Your Fingertips.
             </h1>

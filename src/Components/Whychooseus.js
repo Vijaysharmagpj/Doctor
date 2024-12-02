@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import whychoose from "../../src/assets/Why Choose Us.avif"
 
 
 const Whychooseus = () => {
@@ -34,9 +35,9 @@ const Whychooseus = () => {
         {/* Photo Section */}
         <div className="photo lg:w-1/2">
           <img
-            src="" // Add your image source here
+            src={whychoose}
             alt="Why Choose Us"
-            className="w-full h-80 object-cover rounded-lg shadow-xl"
+            className="w-full h-90 object-cover rounded-lg shadow-xl"
           />
         </div>
       </div>
