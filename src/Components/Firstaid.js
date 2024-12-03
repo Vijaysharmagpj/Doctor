@@ -80,8 +80,9 @@ const Firstaid = () => {
           </form>
         </div>
       </div>
-      <Footer />
+
     </div>
+    <Footer />
     </>
   );
 };

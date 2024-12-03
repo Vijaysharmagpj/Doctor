@@ -9,18 +9,16 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import caredoctor from "../../src/assets/care doctor.jpg";
 
-
 const Home = () => {
+  const navigate = useNavigate();
 
-  const navigate=useNavigate();
+  const navigatebookappointment = () => {
+    navigate("/bookappointment");
+  };
 
-  const navigatebookappointment=()=>{
-    navigate("/bookappointment")
-  }
-
-  const navigateSpecialDoctor=()=>{
-    navigate("/doctor")
-  }
+  const navigateSpecialDoctor = () => {
+    navigate("/doctor");
+  };
   return (
     <>
       <Navbar />
@@ -38,8 +36,9 @@ const Home = () => {
               results for a healthier you.
             </p>
             <button
-            onClick={navigatebookappointment} 
-            className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300">
+              onClick={navigatebookappointment}
+              className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300"
+            >
               Book Appointment
             </button>
           </div>
@@ -96,8 +95,9 @@ const Home = () => {
                 <FaUserDoctor className="text-3xl text-[#FA6A28] mx-auto" />
                 <p className="text-xl font-semibold">Find Special Doctor</p>
                 <button
-                onClick={navigateSpecialDoctor} 
-                className="bg-[#FFD60A] text-black px-6 py-2 rounded-lg">
+                  onClick={navigateSpecialDoctor}
+                  className="bg-[#FFD60A] text-black px-6 py-2 rounded-lg"
+                >
                   Doctor
                 </button>
               </div>
@@ -115,10 +115,9 @@ const Home = () => {
 
         {/* Why Choose Us Section */}
         <Whychooseus />
-
-        {/* Footer Section */}
-        <Footer />
       </div>
+      {/* Footer Section */}
+      <Footer />
     </>
   );
 };

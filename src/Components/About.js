@@ -67,8 +67,9 @@ const About = () => {
     </div>
   </div>
         <DoctorList />
-        <Footer/>
+
       </div>
+      <Footer/>
     </>
   );
 };
