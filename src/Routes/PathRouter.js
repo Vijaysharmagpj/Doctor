@@ -12,6 +12,7 @@ import SignupForm from "../LoginLogout/SignupForm";
 import BookAppointment from "../Components/BookAppointment";
 import Error404 from "../Components/Error404";
 import BookAppointmentList from "../Components/BookAppointmentList";
+import PatientList from "../Components/PatientList";
 
 
 const PathRouter = () => {
@@ -28,6 +29,7 @@ const PathRouter = () => {
         <Route path="/bookappointment" element={<BookAppointment/>}/>
         <Route path="/404page" element={<Error404/>}/>
         <Route path="/bookappointmentlist" element={<BookAppointmentList/>}/>
+        <Route path="/patientlist" element={<PatientList/>}/>
 
         <Route path="/" element={<LoginForm/>} />
         <Route path="/signup" element={<SignupForm/>} />
