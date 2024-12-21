@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaLinkedinIn } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { IoCallOutline } from "react-icons/io5";
@@ -50,24 +49,30 @@ const Navbar = () => {
         <div className="flex items-center space-x-6 ml-[5px]">
           <div className="flex space-x-4 text-xl">
             <a
-              href="https://www.linkedin.com/feed/"
+              href="https://www.facebook.com"
               target="_blank"
               rel="noreferrer"
               className="hover:text-gray-300 cursor-pointer"
             >
-              <FaLinkedinIn />
+              <FaFacebookF />
             </a>
-            <FaFacebookF className="hover:text-gray-300 cursor-pointer" />
-            <LuInstagram className="hover:text-gray-300 cursor-pointer" />
-            <MdNotificationsActive
-              onClick={handleNotification}
+            <a
+            href="https://www.instagram.com"
+              target="_blank"
+              rel="noreferrer"
               className="hover:text-gray-300 cursor-pointer"
-            />
+            >
+              <LuInstagram />
+            </a>
+              <MdNotificationsActive 
+                onClick={handleNotification}
+              className="hover:text-gray-300 cursor-pointer"
+              />
           </div>
 
           <div className="flex items-center text-sm">
             <IoCallOutline className="text-xl" />
-            <span>Call Our Service +91 8271779635</span>
+            <span>+91 8271779635</span>
           </div>
           <div className="hover:text-gray-300 cursor-pointer text-2xl">
           <IoMdLogOut

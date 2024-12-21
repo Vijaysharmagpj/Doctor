@@ -1,10 +1,15 @@
-import React from "react";
-import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { PiCopyrightBold } from "react-icons/pi";
+import developerImg from "../../src/assets/vijay.png"
 
 const Footer = () => {
+
+  const handleDeveloper = () => {
+    window.open("https://portfoliovijaysharma.netlify.app/", "_blank");
+  };
+
   const currentYear = new Date().getFullYear();
   return (
     <div className="bg-[#161D29] text-white p-8">
@@ -14,7 +19,6 @@ const Footer = () => {
           <p className="text-lg font-bold mb-2">Address</p>
           <p className="mb-4">Jadopur Road, Gopalganj Pincode: 841428</p>
           <div className="flex space-x-4 text-xl">
-            <FaLinkedinIn className="hover:text-gray-300 cursor-pointer" />
             <FaFacebookF className="hover:text-gray-300 cursor-pointer" />
             <FaInstagram className="hover:text-gray-300 cursor-pointer" />
             <FaXTwitter className="hover:text-gray-300 cursor-pointer" />
@@ -58,10 +62,33 @@ const Footer = () => {
               className="w-16 h-16 rounded-full bg-gray-500"
             />
             <div>
-              <p>Dr. Pramod Kumar Sharma</p>
+              <p className="font-semibold">Dr. Pramod Kumar Sharma</p>
               <p className="text-sm text-gray-400">MBBS</p>
             </div>
           </div>
+        </div>
+
+        {/* Developer Section */}
+        <div className="flex-1 min-w-[200px]">
+          <p className="text-lg font-bold mb-2">Developer</p>
+          <div className="flex items-center space-x-4">
+            <img
+              src={developerImg}
+              alt="developer"
+              className="w-16 h-16 rounded-full bg-gray-500"
+            />
+            <div>
+              <p className="font-semibold">Vijay Kumar Sharma</p>
+              <p className="text-sm text-gray-400">Software Developer</p>
+              <p className="text-sm text-gray-400">MERN Stack</p>
+            </div>
+          </div>
+          <button
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            onClick={handleDeveloper}
+          >
+            Connect
+          </button>
         </div>
       </div>
 
