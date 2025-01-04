@@ -6,6 +6,7 @@ import Doctor from "../Components/Doctor";
 import Diet from "../Components/Diet";
 import First_aid from "../Components/Firstaid";
 import Contact from "../Components/Contact";
+import Treatment from "../Components/Treatment";
 import LoginForm from "../LoginLogout/LoginForm"
 import SignupForm from "../LoginLogout/SignupForm";
 import BookAppointment from "../Components/BookAppointment";
@@ -20,6 +21,7 @@ const PathRouter = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/treatment" element={<Treatment />} />
         <Route path="/doctor" element={<Doctor />} />
         <Route path="/diet" element={<Diet />} />
         <Route path="/firstaid" element={<First_aid />} />
