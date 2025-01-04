@@ -3,6 +3,7 @@ import Patientlist from "../../src/assets/PatientList.jpg";
 import Navbar from "./Navbar";
 import { FaListOl } from "react-icons/fa";
 import { RiDeleteBin3Fill } from "react-icons/ri";
+import { FaCloudDownloadAlt } from "react-icons/fa";
 
 const PatientList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -81,6 +82,9 @@ const PatientList = () => {
                   </button>
                   <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">
                     <RiDeleteBin3Fill />
+                  </button>
+                  <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">
+                    <FaCloudDownloadAlt />
                   </button>
                 </td>
               </tr>
