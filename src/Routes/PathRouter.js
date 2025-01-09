@@ -13,6 +13,8 @@ import BookAppointment from "../Components/BookAppointment";
 import Error404 from "../Components/Error404";
 import BookAppointmentList from "../Components/BookAppointmentList";
 import PatientList from "../Components/PatientList";
+import ForgetPassword from "../LoginLogout/ForgetPassword";
+import OTP from "../LoginLogout/OTP";
 
 
 const PathRouter = () => {
@@ -30,6 +32,8 @@ const PathRouter = () => {
         <Route path="/404page" element={<Error404/>}/>
         <Route path="/bookappointmentlist" element={<BookAppointmentList/>}/>
         <Route path="/patientlist" element={<PatientList/>}/>
+        <Route path="/forgetpassword" element={<ForgetPassword/>}/>
+        <Route path="/otp" element={<OTP/>}/>
 
         <Route path="/" element={<LoginForm/>} />
         <Route path="/signup" element={<SignupForm/>} />

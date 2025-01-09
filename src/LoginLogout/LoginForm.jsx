@@ -99,7 +99,7 @@ const LoginForm = () => {
 
           {/* Forgot Password */}
           <Link
-            to="#"
+            to="/forgetpassword"
             className="text-sm text-[#18BCFC] hover:underline text-right"
           >
             Forgot Password?
