@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import Loginimg from "../../src/assets/login.gif";
+import axios from "axios";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -20,10 +21,20 @@ const LoginForm = () => {
     }));
   }
 
-  function submitHandler(e) {
-    e.preventDefault();
-    toast.success("Login Successfully");
-    navigate("/home");
+  const submitHandler=async(e)=> {
+    try {
+      e.preventDefault();
+      const url="http://localhost:3000/api/doctor/login";
+      const response= await axios.post(url,formData,{
+        headers: {
+            'Content-Type': 'application/json',
+          },
+      })
+      toast.success("Login Successfully");
+      navigate("/home");
+    } catch (error) {
+      toast.error("Account Not Created!");
+    }
   }
 
   return (

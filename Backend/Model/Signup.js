@@ -1,7 +1,12 @@
 const mongoose=require("mongoose");
 
 const signupSchema=mongoose.Schema({
-    name:{
+    firstName:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    lastName:{
         type:String,
         required:true,
         trim:true,

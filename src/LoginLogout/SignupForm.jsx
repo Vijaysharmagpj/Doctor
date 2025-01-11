@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import signupimg from "../../src/assets/signup.gif";
+import axios from "axios";
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -23,16 +24,27 @@ const SignupForm = () => {
       [event.target.name]: event.target.value,
     }));
   };
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match");
       return;
+    } else {
+      try {
+        const url = "http://localhost:3000/api/doctor/signup";
+        const response = await axios.post(url, formData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        toast.success("Account Created");
+        navigate("/");
+      } catch (error) {
+        toast.error("Error creating account");
+      }
     }
-    toast.success("Account Created");
-    navigate("/");
   };
+  
 
   return (
     <div className="flex flex-col lg:flex-row justify-center items-center min-h-screen bg-[#000814] text-gray-200 px-4 lg:px-16">
