@@ -54,7 +54,6 @@ const Treatment = () => {
 
   const handleSave = () => {
     console.log("Form Data Saved:", formData);
-    // Here you can save the form data to a server or local storage if needed
   };
 
   return (
@@ -139,6 +138,7 @@ const Treatment = () => {
                   <option>+</option>
                   <option>++</option>
                   <option>+++</option>
+                  <option>++++</option>
                 </select>
               </div>
               <div className="space-y-2">
@@ -152,6 +152,7 @@ const Treatment = () => {
                   <option value="" disabled>
                     App
                   </option>
+                  <option>Ok</option>
                   <option>Less</option>
                   <option>Medium</option>
                   <option>High</option>

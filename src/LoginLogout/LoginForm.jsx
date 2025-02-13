@@ -24,7 +24,7 @@ const LoginForm = () => {
   const submitHandler=async(e)=> {
     try {
       e.preventDefault();
-      const url="http://localhost:3000/api/doctor/login";
+      const url="http://localhost:4000/api/doctor/login";
       const response= await axios.post(url,formData,{
         headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const LoginForm = () => {
       toast.success("Login Successfully");
       navigate("/home");
     } catch (error) {
-      toast.error("Account Not Created!");
+      toast.error("Please Check Your Email Id And Password!");
     }
   }
 

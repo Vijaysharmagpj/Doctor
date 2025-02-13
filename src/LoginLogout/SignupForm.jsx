@@ -31,7 +31,7 @@ const SignupForm = () => {
       return;
     } else {
       try {
-        const url = "http://localhost:3000/api/doctor/signup";
+        const url = "http://localhost:4000/api/doctor/signup";
         const response = await axios.post(url, formData, {
           headers: {
             'Content-Type': 'application/json',
