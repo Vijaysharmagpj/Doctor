@@ -10,6 +10,8 @@ import { IoIosCreate } from "react-icons/io";
 import { CiSaveDown1 } from "react-icons/ci";
 import { RiFileEditLine } from "react-icons/ri";
 import Navbar from "./Navbar";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Treatment = () => {
   const [formData, setFormData] = useState({
@@ -52,8 +54,50 @@ const Treatment = () => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     console.log("Form Data Saved:", formData);
+    try {
+      const url = "http://localhost:4000/api/doctor/treatment";
+      const response = await axios.post(url, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      toast.success("Report Add Successfully");
+      setFormData({
+        refNo: "",
+        name: "",
+        address: "",
+        thir: "",
+        app: "",
+        gender: "",
+        religion: "",
+        age: "",
+        height: "",
+        mind: "",
+        date: "",
+        desire: "",
+        weight: "",
+        adct: "",
+        swt: "",
+        tng: "",
+        nGl: "",
+        bp: "",
+        prt: "",
+        hc: "",
+        chest: "",
+        ph: "",
+        fh: "",
+        complain: "",
+        prescriptionDate: "",
+        followUp: "",
+        rx: "",
+        medicineCourse: "",
+        days: "",
+      });
+    } catch (error) {
+      toast.error("Add Report Again");
+    }
   };
 
   return (
