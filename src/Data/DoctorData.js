@@ -1,44 +1,50 @@
+import drpksharma from "../../src/assets/dr.pk sharma.jpg";
+import Abhishek from "../../src/assets/Abhishek Ranjan.jpg";
+import manoj from "../../src/assets/Manoj Kumar.jpg";
+import Rajiv_Ranjan from "../../src/assets/Rajiv Ranjan.jpg";
+import arun_kumar from "../../src/assets/Arun kumar.jpg";
+import shivandu from "../../src/assets/shivandu tiwari.jpg";
 export const DoctorData=[
     {
         name:"Dr.Pramod Kumar Sharma",
-        qualification:"MBBS",
+        qualification:"BHMS",
         location:"Gopalganj",
-        img:"",
+        img: drpksharma ,
         specialist :"General Physician"
     },
     {
-        name:"Dr.Pramod Kumar Sharma",
-        qualification:"MBBS",
+        name:"Dr.Abhishek Ranjan",
+        qualification:"MD Medicine",
         location:"Gopalganj",
-        img:"",
-        specialist :"General Physician"
+        img:Abhishek,
+        specialist :"MD Medicine"
     },
     {
-        name:"Dr.Pramod Kumar Sharma",
-        qualification:"MBBS",
+        name:"Dr.Manoj Kumar",
+        qualification:"BHMS",
         location:"Gopalganj",
-        img:"",
+        img:manoj,
         specialist :"Homeopathic Pediatrician"
     },
     {
-        name:"Dr.Pramod Kumar Sharma",
-        qualification:"MBBS",
+        name:"Dr.Rajiv_Ranjan",
+        qualification:"BHMS",
         location:"Gopalganj",
-        img:"",
+        img:Rajiv_Ranjan,
         specialist :"Homeopathic Dermatologist"
     },
     {
-        name:"Dr.Pramod Kumar Sharma",
-        qualification:"MBBS",
+        name:"Dr.Arun Kumar",
+        qualification:"BHMS",
         location:"Gopalganj",
-        img:"",
+        img:arun_kumar,
         specialist :"Homeopathic ENT Specialist"
     },
     {
-        name:"Dr.Pramod Kumar Sharma",
-        qualification:"MBBS",
+        name:"Dr.Shivandu Tiwari",
+        qualification:"BHMS",
         location:"Gopalganj",
-        img:"",
+        img:shivandu ,
         specialist :"Homeopathic Rheumatologist"
     },
 ]

@@ -12,7 +12,7 @@ const PatientList = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = () => { 
     setIsModalOpen(false);
   };
 

@@ -21,9 +21,9 @@ const DoctorCard = () => {
           >
             <div className="image mb-4">
               <img
-                src={data.image}
+                src={data.img}
                 alt="Doctor"
-                className="w-full h-48 object-cover rounded-lg"
+                className="w-40 h-40 object-cover rounded-full mx-auto"
               />
             </div>
             <div className="text">

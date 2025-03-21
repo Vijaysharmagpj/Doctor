@@ -17,13 +17,16 @@ const DoctorList = () => {
               {/*image sction  */}
               <div className="absolute inset-0 h-full w-full bg-[#001D3D] rounded-xl p-6 [backface-visibility:hidden] flex flex-col items-center justify-center">
                 <img
-                  src={data.image}
+                  src={data.img}
                   alt={data.name}
                   className="w-32 h-32 object-cover rounded-full mb-4"
                 />
                 <h2 className="text-xl font-semibold text-[#FA6A28]">
                   {data.name}
                 </h2>
+                <p className="text-xl font-semibold text-[#18BCFC]">{data.specialist}</p>
+              <p className="text-lg font-semibold text-gray-400">{data.qualification}</p>
+              <p className="text-md font-semibold text-gray-500">{data.location}</p>
               </div>
               {/* text section here */}
               <div className=" inset-0 h-full w-full bg-black/80 rounded-xl text-slate-200 px-6 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">

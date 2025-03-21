@@ -61,7 +61,7 @@ const About = () => {
       </div>
       <div className="text lg:w-2/3 space-y-4 text-gray-300">
         <p className="text-2xl font-semibold">Dr. Pramod Kumar Sharma</p>
-        <p className="text-lg text-gray-400">MBBS</p>
+        <p className="text-lg text-gray-400">BHMS</p>
         <p className="text-lg text-gray-400">General Physician</p>
       </div>
     </div>
