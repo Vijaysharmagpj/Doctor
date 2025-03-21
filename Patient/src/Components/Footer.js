@@ -2,10 +2,10 @@ import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { PiCopyrightBold } from "react-icons/pi";
-import developerImg from "../../src/assets/vijay.png"
+import developerImg from "../../src/assets/vijay.png";
+import drpksharma from "../../../Patient/src/assets/dr.pk sharma.jpg";
 
 const Footer = () => {
-
   const handleDeveloper = () => {
     window.open("https://portfoliovijaysharma.netlify.app/", "_blank");
   };
@@ -57,13 +57,13 @@ const Footer = () => {
           <p className="text-lg font-bold mb-2">Popular Doctor</p>
           <div className="flex items-center space-x-4">
             <img
-              src=""
+              src={drpksharma}
               alt="popular-doctor"
               className="w-16 h-16 rounded-full bg-gray-500"
             />
             <div>
               <p className="font-semibold">Dr. Pramod Kumar Sharma</p>
-              <p className="text-sm text-gray-400">MBBS</p>
+              <p className="text-sm text-gray-400">BHMS</p>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ const Footer = () => {
       {/* Footer Bottom Section */}
       <div className="border-t border-gray-600 mt-8 pt-4 text-center text-sm flex flex-col items-center">
         <PiCopyrightBold className="text-xl mb-2" />
-        <p>Copyright {currentYear} Fdoctor. All Rights Reserved.</p>
+        <p>Copyright {currentYear} doctor. All Rights Reserved.</p>
       </div>
     </div>
   );

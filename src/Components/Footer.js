@@ -95,7 +95,7 @@ const Footer = () => {
       {/* Footer Bottom Section */}
       <div className="border-t border-gray-600 mt-8 pt-4 text-center text-sm flex flex-col items-center">
         <PiCopyrightBold className="text-xl mb-2" />
-        <p>Copyright {currentYear} Fdoctor. All Rights Reserved.</p>
+        <p>Copyright {currentYear} doctor. All Rights Reserved.</p>
       </div>
     </div>
   );

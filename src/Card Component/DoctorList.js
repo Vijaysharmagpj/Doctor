@@ -29,7 +29,7 @@ const DoctorList = () => {
               <p className="text-md font-semibold text-gray-500">{data.location}</p>
               </div>
               {/* text section here */}
-              <div className=" inset-0 h-full w-full bg-black/80 rounded-xl text-slate-200 px-6 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+              <div className="absolute inset-0 h-full w-full bg-[#171C26] border border-gray-500 rounded-xl text-slate-200 px-6 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="flex min-h-full flex-col items-center justify-center">
                   <h2 className="text-2xl font-bold mb-4">{data.name}</h2>
                   <p className="text-sm italic mb-1">{data.qualification}</p>
