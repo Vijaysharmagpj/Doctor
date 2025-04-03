@@ -119,12 +119,13 @@ const Treatment = () => {
                   placeholder="Enter Ref.No"
                   name="refNo"
                   value={formData.refNo}
+                  required
                   onChange={handleChange}
                   className="w-full p-2 bg-[#1a2632] text-white border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
               </div>
               <div className="space-y-2 ">
-                <label className="block font-medium">Search by Ref.No.</label>.
+                <label className="block font-medium">Search by Ref.No.</label>
                 <input
                   type="text"
                   placeholder="Search Ref.No"
