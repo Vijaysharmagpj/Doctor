@@ -124,7 +124,7 @@ const Treatment = () => {
                 />
               </div>
               <div className="space-y-2 ">
-                <label className="block font-medium">Search by Ref.No.</label>
+                <label className="block font-medium">Search by Ref.No.</label>.
                 <input
                   type="text"
                   placeholder="Search Ref.No"
