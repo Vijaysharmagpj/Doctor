@@ -15,7 +15,9 @@ require("./config/database").connect();
 
 // import and mount route
 const user=require("./Route/User");
+const treatment = require("./Route/Treatment")
 app.use("/api/doctor",user);
+app.use("/api/doctor",treatment);
 
 //activate 
 

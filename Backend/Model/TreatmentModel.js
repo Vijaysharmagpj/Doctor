@@ -18,12 +18,10 @@ const TreatmentSchema=mongoose.Schema({
     },
     thir:{
         type:String,
-        required:true,
         trim:true,
     },
     app:{
         type:String,
-        required:true,
         trim:true,
     },
     gender:{
@@ -33,7 +31,6 @@ const TreatmentSchema=mongoose.Schema({
     },
     religion:{
         type:String,
-        required:true,
         trim:true
     },
     age:{
@@ -43,17 +40,14 @@ const TreatmentSchema=mongoose.Schema({
     },
     height:{
         type:Number,
-        required:true,
         trim:true,
     },
     mind:{
         type:String,
-        required:true,
         trim:true,
     },
     date:{
         type:Date,
-        required:true,
         trim:true,
     },
     desire:{
@@ -68,22 +62,18 @@ const TreatmentSchema=mongoose.Schema({
     },
     adct:{
         type:String,
-        required:true,
         trim:true,
     },
     swt:{
         type:String,
-        required:true,
         trim:true,
     },
     tng:{
         type:String,
-        required:true,
         trim:true,
     },
     nGl:{
         type:String,
-        required:true,
         trim:true,
     },
     bp:{
@@ -93,27 +83,22 @@ const TreatmentSchema=mongoose.Schema({
     },
     prt:{
         type:String,
-        required:true,
         trim:true,
     },
     hc:{
         type:String,
-        required:true,
         trim:true,
     },
     chest:{
         type:String,
-        required:true,
         trim:true
     },
     ph:{
         type:String,
-        required:true,
         trim:true,
     },
     fh:{
         type:String,
-        required:true,
         trim:true,
     },
     complain:{

@@ -46,6 +46,8 @@ const Treatment = () => {
     days: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -55,6 +57,69 @@ const Treatment = () => {
   };
 
   const handleSave = async () => {
+    let newError={}
+    
+    if(!formData.refNo.trim()){
+      newError.refNo = "Ref.No is required";
+    }
+
+    if(!formData.name.trim()){
+      newError.name="Name is required";
+    }
+
+    if(!formData.address.trim()){
+      newError.address="Address is required";
+    }
+
+    if(!formData.gender.trim()){
+      newError.address="Address is required";
+    }
+
+    if(!formData.age.trim()){
+      newError.age="Age is required";
+    }
+
+    if(!formData.desire.trim()){
+      newError.desire="Desire is required"
+    }
+
+    if(!formData.weight.trim()){
+      newError.weight="Weight is required"
+    }
+
+    if(!formData.bp.trim()){
+      newError.bp="BP is required"
+    }
+
+    if(!formData.complain.trim()){
+      newError.complain="Complain is required"
+    }
+
+    if(!formData.prescriptionDate.trim()){
+      newError.prescriptionDate="Prescription Date is required";
+    }
+
+    if(!formData.followUp.trim()){
+      newError.followUp="Follow up is required";
+    }
+
+    if(!formData.rx.trim()){
+      newError.rx="Rx is required";
+    }
+
+    if(!formData.medicineCourse.trim()){
+      newError.medicineCourse="Medicine Course is required";
+    }
+
+    if(!formData.days.trim()){
+      newError.days="Days is required";
+    }
+
+    if (Object.keys(newError).length > 0) {
+      setErrors(newError);
+      toast.error("Please fill all required fields");
+      return;
+    }
     console.log("Form Data Saved:", formData);
     try {
       const url = "http://localhost:4000/api/doctor/treatment";
@@ -95,6 +160,7 @@ const Treatment = () => {
         medicineCourse: "",
         days: "",
       });
+      setErrors({});
     } catch (error) {
       toast.error("Add Report Again");
     }
@@ -123,6 +189,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full p-2 bg-[#1a2632] text-white border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.refNo && <p className="text-red-500 text-sm">{errors.refNo}</p>}
               </div>
               <div className="space-y-2 ">
                 <label className="block font-medium">Search by Ref.No.</label>
@@ -144,6 +211,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full p-2 bg-[#1a2632] text-white border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
               </div>
               <div className="space-y-2 ">
                 <label className="block font-medium">Search by Name</label>
@@ -166,6 +234,7 @@ const Treatment = () => {
                 value={formData.address}
                 onChange={handleChange}
               ></textarea>
+              {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -252,6 +321,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.age && <p className="text-red-500 text-sm">{errors.age}</p>}
               </div>
               <div className="space-y-2">
                 <label className="block font-medium">Height</label>
@@ -299,6 +369,7 @@ const Treatment = () => {
                 value={formData.desire}
                 onChange={handleChange}
               ></textarea>
+              {errors.desire && <p className="text-red-500 text-sm">{errors.desire}</p>}
             </div>
           </div>
 
@@ -315,6 +386,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.weight && <p className="text-red-500 text-sm">{errors.weight}</p>}
               </div>
               <div className="space-y-2">
                 <label className="block font-medium">Adct</label>
@@ -376,6 +448,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.bp && <p className="text-red-500 text-sm">{errors.bp}</p>}
               </div>
             </div>
 
@@ -454,6 +527,7 @@ const Treatment = () => {
                 value={formData.complain}
                 onChange={handleChange}
               ></textarea>
+              {errors.complain && <p  className="text-red-500 text-sm">{errors.complain}</p>}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -466,6 +540,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.prescriptionDate && <p className="text-red-500 text-sm">{errors.prescriptionDate}</p>}
               </div>
               <div className="space-y-2">
                 <label className="block font-medium">Follow-Up</label>
@@ -477,6 +552,7 @@ const Treatment = () => {
                   onChange={handleChange}
                   className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
+                {errors.followUp && <p className="text-red-500 text-sm">{errors.followUp}</p>}
               </div>
             </div>
 
@@ -488,8 +564,9 @@ const Treatment = () => {
                 value={formData.rx}
                 onChange={handleChange}
                 className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                rows="5" // You can adjust the number of rows as needed
+                rows="5" 
               ></textarea>
+              {errors.rx && <p className="text-red-500 text-sm">{errors.rx}</p>}
             </div>
 
             <div className="space-y-2">
@@ -502,6 +579,7 @@ const Treatment = () => {
                 onChange={handleChange}
                 className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {errors.medicineCourse && <p className="text-red-500 text-sm">{errors.medicineCourse}</p>}
             </div>
 
             <div className="space-y-2">
@@ -514,6 +592,7 @@ const Treatment = () => {
                 onChange={handleChange}
                 className="w-full bg-[#1a2632] text-white p-2 border rounded-md bg-lightblue-100 text-white-800 border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {errors.days && <p className="text-red-500 text-sm">{errors.days}</p>}
             </div>
 
             {/* Button Section */}
