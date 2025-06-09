@@ -35,3 +35,29 @@ exports.getTreatment = async (req, res) => {
     });
   }
 };
+
+//delete API of Treatement controller
+exports.deleteTreatment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteTreatment = await Treatment.findByIdAndDelete(id);
+    if (!deleteTreatment) {
+      res.status(404).json({
+        success: false,
+        message: "Treatment not found",
+        data: deleteTreatment,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Treatment delete successfully",
+      data: deleteTreatment,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete treatments",
+      error: error.message,
+    });
+  }
+};

@@ -5,29 +5,49 @@ import { FaListOl } from "react-icons/fa";
 import { RiDeleteBin3Fill } from "react-icons/ri";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const PatientList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [patientList, setPatientLists] = useState([]);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
-  useEffect(() => {
-    const fetchPatientList = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:4000/api/doctor/getTreatment"
-        );
-        if (res.data.success) {
-          setPatientLists(res.data.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchPatientList();
-  }, []);
+const fetchPatientList = async () => {
+  try {
+    const res = await axios.get("http://localhost:4000/api/doctor/getTreatment");
+    if (res.data.success) {
+      setPatientLists(res.data.data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  const handleViewModel = () => {
+useEffect(() => {
+  fetchPatientList();
+}, []);
+
+
+  const handleViewModel = (patient) => {
+    setSelectedPatient(patient);
     setIsModalOpen(true);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:4000/api/doctor/deleteTreatment/${id}`
+      );
+      if (res.data.success) {
+        toast.success("Patient deleted successfully!");
+        fetchPatientList();
+      } else {
+        toast.error("Patient not found.");
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast.error("Failed to delete patient.");
+    }
   };
 
   const handleCloseModal = () => {
@@ -104,7 +124,10 @@ const PatientList = () => {
                     >
                       <FaListOl />
                     </button>
-                    <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">
+                    <button
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
+                      onClick={() => handleDelete(patient._id)}
+                    >
                       <RiDeleteBin3Fill />
                     </button>
                     <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">
@@ -129,119 +152,151 @@ const PatientList = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Ref.No:</span>
-                <span className="text-white ml-10">001</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.refNo}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Name:</span>
-                <span className="text-white ml-10">John Doe</span>
+                <span className="text-white ml-10">{selectedPatient.name}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Address:</span>
-                <span className="text-white ml-10">123 Main St</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.address}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Thir:</span>
-                <span className="text-white ml-10">-</span>
+                <span className="text-white ml-10">{selectedPatient.thir}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">App:</span>
-                <span className="text-white ml-10">Checkup</span>
+                <span className="text-white ml-10">{selectedPatient.app}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Gender:</span>
-                <span className="text-white ml-10">Male</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.gender}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Religion:</span>
-                <span className="text-white ml-10">Christian</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.religion}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Age:</span>
-                <span className="text-white ml-10">35</span>
+                <span className="text-white ml-10">{selectedPatient.age}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Height:</span>
-                <span className="text-white ml-10">5'8"</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.height}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Mind:</span>
-                <span className="text-white ml-10">Stable</span>
+                <span className="text-white ml-10">{selectedPatient.mind}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Date:</span>
-                <span className="text-white ml-10">2024-12-07</span>
+                <span className="text-white ml-10">
+                  {selectedPatient?.date
+                    ? new Date(selectedPatient.date).toLocaleDateString("en-GB")
+                    : "-"}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Desire:</span>
-                <span className="text-white ml-10">Healthy</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.desire}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Weight:</span>
-                <span className="text-white ml-10">75 kg</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.weight}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Adct:</span>
-                <span className="text-white ml-10">None</span>
+                <span className="text-white ml-10">{selectedPatient.adct}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Swt:</span>
-                <span className="text-white ml-10">Normal</span>
+                <span className="text-white ml-10">{selectedPatient.swt}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Tng:</span>
-                <span className="text-white ml-10">Clean</span>
+                <span className="text-white ml-10">{selectedPatient.tng}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">NGl:</span>
-                <span className="text-white ml-10">Normal</span>
+                <span className="text-white ml-10">{selectedPatient.ngl}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">BP:</span>
-                <span className="text-white ml-10">120/80</span>
+                <span className="text-white ml-10">{selectedPatient.bp}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Prt:</span>
-                <span className="text-white ml-10">Good</span>
+                <span className="text-white ml-10">{selectedPatient.prt}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Hc:</span>
-                <span className="text-white ml-10">Normal</span>
+                <span className="text-white ml-10">{selectedPatient.hc}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Chest:</span>
-                <span className="text-white ml-10">Clear</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.chest}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Ph:</span>
-                <span className="text-white ml-10">7.4</span>
+                <span className="text-white ml-10">{selectedPatient.ph}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Fh:</span>
-                <span className="text-white ml-10">Normal</span>
+                <span className="text-white ml-10">{selectedPatient.fh}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Complain:</span>
-                <span className="text-white ml-10">Headache</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.complain}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Prescription Date:</span>
-                <span className="text-white ml-10">2024-12-07</span>
+                <span className="text-white ml-10">
+                  {selectedPatient?.date
+                    ? new Date(
+                        selectedPatient.prescriptionDate
+                      ).toLocaleDateString("en-GB")
+                    : "-"}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Follow-Up:</span>
-                <span className="text-white ml-10">2024-12-14</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.followUp}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Rx:</span>
-                <span className="text-white ml-10">Paracetamol</span>
+                <span className="text-white ml-10">{selectedPatient.rx}</span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Medicine Course:</span>
-                <span className="text-white ml-10">1-0-1</span>
+                <span className="text-white ml-10">
+                  {selectedPatient.medicineCourse}
+                </span>
               </div>
               <div className="flex items-center border border-[#0F92CC] p-2">
                 <span className="font-bold w-1/3">Days:</span>
-                <span className="text-white ml-10">7</span>
+                <span className="text-white ml-10">{selectedPatient.days}</span>
               </div>
             </div>
             <button
