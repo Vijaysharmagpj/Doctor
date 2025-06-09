@@ -6,27 +6,33 @@ import { RiDeleteBin3Fill } from "react-icons/ri";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PatientPDF from "../Template/PatientPDF";
 
 const PatientList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [patientList, setPatientLists] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const fetchPatientList = async () => {
-  try {
-    const res = await axios.get("http://localhost:4000/api/doctor/getTreatment");
-    if (res.data.success) {
-      setPatientLists(res.data.data);
+  const fetchPatientList = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:4000/api/doctor/getTreatment"
+      );
+      if (res.data.success) {
+        setPatientLists(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
-useEffect(() => {
-  fetchPatientList();
-}, []);
-
+  useEffect(() => {
+    fetchPatientList();
+  }, []);
 
   const handleViewModel = (patient) => {
     setSelectedPatient(patient);
@@ -53,6 +59,8 @@ useEffect(() => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
@@ -130,9 +138,25 @@ useEffect(() => {
                     >
                       <RiDeleteBin3Fill />
                     </button>
-                    <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">
-                      <FaCloudDownloadAlt />
-                    </button>
+                    <PDFDownloadLink
+                      document={<PatientPDF />}
+                      fileName="Patient_Details.pdf"
+                    >
+                      {({ loading }) =>
+                        loading ? (
+                          <button
+                            className="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
+                            disabled
+                          >
+                            Generating...
+                          </button>
+                        ) : (
+                          <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 flex items-center gap-2">
+                            <FaCloudDownloadAlt />
+                          </button>
+                        )
+                      }
+                    </PDFDownloadLink>
                   </td>
                 </tr>
               ))}
