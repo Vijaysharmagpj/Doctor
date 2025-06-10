@@ -16,8 +16,10 @@ require("./config/database").connect();
 // import and mount route
 const user=require("./Route/User");
 const treatment = require("./Route/Treatment")
+const bookAppointment=require("./Route/BookAppointment")
 app.use("/api/doctor",user);
 app.use("/api/doctor",treatment);
+app.use("/api/doctor",bookAppointment)
 
 //activate 
 
