@@ -20,7 +20,15 @@ exports.FirstAid = async (req, res) => {
 
 exports.getFirstAid = async (req,res) => {
     try {
-        const getFirstAidDetail= await FirstAid.find();
+      const {search}=req.query;
+      let query={};
+      if(search && search.trim() !==""){
+        query={
+          disease: {$regex:search,$options:"i"}
+        };
+      }
+
+        const getFirstAidDetail= await FirstAid.find(query);
         res.status(200).json({
             success:true,
             message:"Fetch all data of first aid",
