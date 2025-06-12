@@ -17,3 +17,20 @@ exports.BookAppointmentCreate = async (req,res) =>{
         })
     }
 }
+
+exports.getBookAppointment = async (req,res) =>{
+    try {
+        const getBookAppointmentDetail= await BookAppointment.find()
+        res.status(200).json({
+            success:true,
+            message:"Fetch Book Appointment Detail Successfully",
+            data:getBookAppointmentDetail,
+        })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Something went wrong while fetching appointment data",
+            error:error.message,
+        })
+    }
+}
