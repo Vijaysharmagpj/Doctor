@@ -17,9 +17,11 @@ require("./config/database").connect();
 const user=require("./Route/User");
 const treatment = require("./Route/Treatment")
 const bookAppointment=require("./Route/BookAppointment")
+const contactUs=require("./Route/Contactus");
 app.use("/api/doctor",user);
 app.use("/api/doctor",treatment);
-app.use("/api/doctor",bookAppointment)
+app.use("/api/doctor",bookAppointment);
+app.use("/api/doctor",contactUs)
 
 //activate 
 
