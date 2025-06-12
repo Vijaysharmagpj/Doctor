@@ -18,10 +18,12 @@ const user=require("./Route/User");
 const treatment = require("./Route/Treatment")
 const bookAppointment=require("./Route/BookAppointment")
 const contactUs=require("./Route/Contactus");
+const firstAid=require("./Route/firstAid");
 app.use("/api/doctor",user);
 app.use("/api/doctor",treatment);
 app.use("/api/doctor",bookAppointment);
-app.use("/api/doctor",contactUs)
+app.use("/api/doctor",contactUs);
+app.use("/api/doctor",firstAid);
 
 //activate 
 
