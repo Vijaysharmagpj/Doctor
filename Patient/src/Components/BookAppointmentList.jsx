@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import BookAppointmentListimg from "../../src/assets/bookappointmentlist.gif";
+import axios from "axios";
 
 const BookAppointmentList = () => {
+  const [appointmentDataList, setAppointmentDataList] = useState([]);
+
+  useEffect(() => {
+    const fetchBookAppointmentDetail = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/doctor/getBookAppointment"
+        );
+        if (res.data.success) {
+          setAppointmentDataList(res.data.data);
+        }
+      } catch (error) {
+        console.log("Error occur in get book appointment", error);
+      }
+    };
+
+    fetchBookAppointmentDetail();
+  }, []);
+
   return (
     <>
       <Navbar />
       <div className="p-6 min-h-screen" style={{ backgroundColor: "#171C26" }}>
-        <h2 className="text-3xl font-bold text-center mb-6 mt-[70px]" style={{ color: "#E2B609" }}>
+        <h2
+          className="text-3xl font-bold text-center mb-6 mt-[70px]"
+          style={{ color: "#E2B609" }}
+        >
           Book Appointment List
         </h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
@@ -38,51 +61,34 @@ const BookAppointmentList = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="hover:bg-gray-800">
-                  <td className="p-3 border-b border-gray-600 text-center">1</td>
-                  <td className="p-3 border-b border-gray-600 text-center">John Doe</td>
-                  <td className="p-3 border-b border-gray-600 text-center">John Doe</td>
-                  <td className="p-3 border-b border-gray-600 text-center">2024-11-24</td>
-                  <td className="p-3 border-b border-gray-600 text-center text-green-500">
-                    Confirmed
-                  </td>
-                  <td className="p-3 border-b border-gray-600 text-center text-green-500">
-                    Confirmed
-                  </td>
-                  <td className="p-3 border-b border-gray-600 text-center text-green-500">
-                    Confirmed
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800">
-                  <td className="p-3 border-b border-gray-600 text-center">2</td>
-                  <td className="p-3 border-b border-gray-600 text-center">Jane Smith</td>
-                  <td className="p-3 border-b border-gray-600 text-center">Jane Smith</td>
-                  <td className="p-3 border-b border-gray-600 text-center">2024-11-25</td>
-                  <td className="p-3 border-b border-gray-600 text-center text-yellow-500">
-                    Pending
-                  </td>
-                  <td className="p-3 border-b border-gray-600 text-center text-yellow-500">
-                    Pending
-                  </td>
-                  <td className="p-3 border-b border-gray-600 text-center text-yellow-500">
-                    Pending
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800">
-                  <td className="p-3 border-b border-gray-600 text-center">3</td>
-                  <td className="p-3 border-b border-gray-600 text-center">Michael Brown</td>
-                  <td className="p-3 border-b border-gray-600 text-center">Michael Brown</td>
-                  <td className="p-3 border-b border-gray-600 text-center">2024-11-26</td>
-                  <td className="p-3 border-b border-gray-600 text-center text-red-500">
-                    Cancelled
-                  </td>
-                  <td className="p-3 border-b border-gray-600 text-center text-red-500">
-                    Cancelled
-                  </td>
-                  <td className="p-3 border-b border-gray-600 text-center text-red-500">
-                    Cancelled
-                  </td>
-                </tr>
+                {appointmentDataList.map((appointmentList, index) => (
+                  <tr key={index} className="hover:bg-gray-800">
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {appointmentList.name}
+                    </td>
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {appointmentList.email}
+                    </td>
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {appointmentList.phoneNumber}
+                    </td>
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {new Date(appointmentList.date).toLocaleDateString(
+                        "en-GB"
+                      )}
+                    </td>
+
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {appointmentList.time}
+                    </td>
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {appointmentList.doctor}
+                    </td>
+                    <td className="p-3 border-b border-gray-600 text-center">
+                      {appointmentList.Disease}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

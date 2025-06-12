@@ -7,7 +7,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import PatientPDF from "../Template/PatientPDF";
+import PatientPDF from "../../src/Template/PatientPDF";
 
 const PatientList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
