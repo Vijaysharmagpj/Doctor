@@ -2,8 +2,8 @@ const FirstAid = require("../Model/FirstAid");
 
 exports.FirstAid = async (req, res) => {
   try {
-    const newFirstAid = await new FirstAid(req.body);
-    const response = newFirstAid.save();
+    const newFirstAid =  new FirstAid(req.body);
+    const response = await newFirstAid.save();
     res.status(200).json({
       success: true,
       message: "first aid add successfully",
