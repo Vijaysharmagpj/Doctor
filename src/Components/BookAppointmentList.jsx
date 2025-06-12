@@ -15,7 +15,6 @@ const BookAppointmentList = () => {
         if (res.data.success) {
           setAppointmentDataList(res.data.data);
         }
-        console.log(res);
       } catch (error) {
         console.log("Error occur in get book appointment", error);
       }

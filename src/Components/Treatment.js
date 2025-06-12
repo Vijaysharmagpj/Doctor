@@ -120,7 +120,6 @@ const Treatment = () => {
       toast.error("Please fill all required fields");
       return;
     }
-    console.log("Form Data Saved:", formData);
     try {
       const url = "http://localhost:4000/api/doctor/treatment";
       const response = await axios.post(url, formData, {

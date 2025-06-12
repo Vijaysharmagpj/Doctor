@@ -28,7 +28,6 @@ const BookAppointment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); 
     toast('Your Appointment Book Successfully', {
         icon: '👏',
       });
