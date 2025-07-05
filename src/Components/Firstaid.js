@@ -11,31 +11,83 @@ const Firstaid = () => {
 
   const [formData, setFormData] = useState({
     search: "",
-    disease: "",
-    medicine: "",
+    diseaseName: "",
+    medicineName: "",
+    dosage: "",
+    timing: "",
   });
 
+  const [diseaseNameMaster, setdiseaseNameMaster] = useState({
+    masterdiseaseName: "",
+  });
+
+  const [diseaseOptions, setDiseaseOptions] = useState([]);
+
+  const [selectedDiseaseData, setSelectedDiseaseData] = useState(null);
+
+  useEffect(() => {
+    const fetchDisease = async () => {
+      try {
+        let res = await axios.get(
+          "http://localhost:4000/api/doctor/getfirstAid"
+        );
+        const uniqueDiseases = [
+          ...new Set(res.data.data.map((item) => item.diseaseName)),
+        ];
+        setDiseaseOptions(uniqueDiseases);
+      } catch (error) {
+        console.error("Error fetching diseases:", error);
+      }
+    };
+    fetchDisease();
+  }, []);
+
   // Handle input changes and update the state
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    if (name === "diseaseName") {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/doctor/getfirstAid?search=${value}`
+        );
+        if (response.data?.data?.length > 0) {
+          setSelectedDiseaseData(response.data.data[0]);
+        } else {
+          setSelectedDiseaseData(null);
+        }
+      } catch (error) {
+        console.error("Error fetching medicines:", error);
+      }
+    }
   };
 
-  // Handle form submit (for adding medicine)
-  const handleSubmit = async (e) => {
+  // handlediseaseNameChange
+  const handlediseaseNameChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setdiseaseNameMaster((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(diseaseNameMaster);
+  };
+
+  const handleDisease = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         "http://localhost:4000/api/doctor/firstAid",
-        formData
+        {
+          diseaseName: diseaseNameMaster.masterdiseaseName,
+        }
       );
       if (response.data) {
-        setFormData({
-          disease: "",
-          medicine: "",
+        setdiseaseNameMaster({
+          diseaseNameMaster: "",
         });
         toast.success("Medicine added successfully");
       }
@@ -44,6 +96,9 @@ const Firstaid = () => {
       toast.error("Something went wrong");
     }
   };
+
+  // Handle form submit (for adding medicine)
+  const handleSubmit = async (e) => { };
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -91,19 +146,20 @@ const Firstaid = () => {
               <MdOutlineSearch className="text-[#FA6A28] text-2xl" />
             </div>
             {searchTerm.trim() !== "" &&
-            Array.isArray(firstAidData) &&
-            firstAidData.length > 0 ? (
+              Array.isArray(firstAidData) &&
+              firstAidData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                 {firstAidData.map((item, index) => (
                   <div
                     key={index}
                     className="bg-[#003566] border border-[#FA6A28] rounded-xl shadow-lg p-4 text-white hover:scale-105 transition-transform duration-300"
                   >
+                    {console.log(item)}
                     <div className="mb-2">
                       <p className="text-lg font-semibold text-[#FA6A28]">
                         Disease:
                       </p>
-                      <p className="text-base">{item.disease}</p>
+                      <p className="text-base">{item.medications}</p>
                     </div>
                     <div>
                       <p className="text-lg font-semibold text-[#FA6A28]">
@@ -121,41 +177,132 @@ const Firstaid = () => {
             )}
           </div>
 
-          {/* Add Medicine Section */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-[#18BCFC] mb-4">
-              Add Medicine
-            </h2>
-            <p className="text-lg mb-6">Add Medicine According To Disease</p>
-            <form
-              className="bg-[#001D3D] p-8 rounded-lg shadow-lg mx-auto max-w-lg mb-[10px]"
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="text"
-                required
-                placeholder="Enter Disease"
-                name="disease"
-                value={formData.disease}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-2 border-[#FA6A28] text-white p-3 mb-4 rounded-md focus:outline-none"
-              />
-              <input
-                type="text"
-                required
-                placeholder="Enter Medicine"
-                name="medicine"
-                value={formData.medicine}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-2 border-[#FA6A28] text-white p-3 mb-6 rounded-md focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="w-full bg-[#FFD60A] text-black py-3 rounded-md font-semibold hover:bg-[#FFC300] transition duration-300"
-              >
+          {/* add medicine section */}
+          <div className="text-center flex flex-col lg:flex-row justify-center gap-8 items-start">
+            {/* Left Column: Add Disease + List */}
+            <div className="w-full lg:w-1/2 space-y-5">
+              {/* Add Disease Section */}
+              <h2 className="text-3xl font-bold text-[#18BCFC] mb-4">
+                Medicines for Selected Disease
+              </h2>
+              <p className="text-lg mb-6">Available Medicines for the Selected Disease</p>
+              <div className="bg-[#001D3D] p-6 rounded-lg shadow-md">
+                <form onSubmit={handleDisease}>
+                  <input
+                    type="text"
+                    name="masterdiseaseName"
+                    onChange={handlediseaseNameChange}
+                    value={diseaseNameMaster.masterdiseaseName}
+                    placeholder="Enter Disease"
+                    className="w-full bg-transparent border-2 border-[#FA6A28] text-white p-3 mb-4 rounded-md focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full bg-[#FFD60A] text-black py-3 rounded-md font-semibold hover:bg-[#FFC300] transition duration-300"
+                  >
+                    Add Disease
+                  </button>
+                </form>
+              </div>
+
+              {/* List of Existing Medicine */}
+              <h2 className="text-3xl font-bold text-[#18BCFC] mb-4">
+                List of Medicines for Selected Disease
+              </h2>
+              <div className="bg-[#001D3D] border border-[#FA6A28] rounded-lg p-6 shadow-md text-white">
+                {selectedDiseaseData ? (
+                  selectedDiseaseData.medications.length > 0 ? (
+                    selectedDiseaseData.medications.map((med, index) => (
+                      <div key={index} className="mb-3">
+                        <p>
+                          <span className="text-[#FFD60A] font-semibold">Disease:</span>{" "}
+                          {selectedDiseaseData.diseaseName} &nbsp;
+                          <span className="text-[#FA6A28] font-semibold">Medicine:</span>{" "}
+                          {med.medicineName} &nbsp;
+                          <span className="text-[#18BCFC] font-semibold">Dosage:</span>{" "}
+                          {med.dosage} &nbsp;
+                          <span className="text-[#FF6A3D] font-semibold">Timing:</span>{" "}
+                          {med.timing}
+                        </p>
+                        <hr className="border-t border-[#FA6A28] mt-2" />
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-400">No medicines found for this disease.</p>
+                  )
+                ) : (
+                  <p className="text-gray-400">Select a disease to view medicines.</p>
+                )}
+              </div>
+
+            </div>
+
+            {/* Right Column: Add Medicine */}
+            <div className="w-full lg:w-1/2">
+              <h2 className="text-3xl font-bold text-[#18BCFC] mb-4">
                 Add Medicine
-              </button>
-            </form>
+              </h2>
+              <p className="text-lg mb-6">Add Medicine According To Disease</p>
+              <form
+                className="bg-[#001D3D] p-8 rounded-lg shadow-lg mx-auto mb-[10px]"
+                onSubmit={handleSubmit}
+              >
+                <select
+                  name="diseaseName"
+                  value={formData.diseaseName}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full bg-[#001D3D] text-white border-2 border-[#FA6A28] p-3 mb-4 rounded-md focus:outline-none"
+                >
+                  <option value="" disabled className="bg-[#001D3D] text-white">
+                    Select Disease
+                  </option>
+                  {diseaseOptions.map((disease, index) => (
+                    <option
+                      key={index}
+                      value={disease}
+                      className="bg-[#001D3D] text-white"
+                    >
+                      {disease}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter Medicine"
+                  name="medicineName"
+                  value={formData.medicineName}
+                  onChange={handleInputChange}
+                  className="w-full bg-transparent border-2 border-[#FA6A28] text-white p-3 mb-6 rounded-md focus:outline-none"
+                />
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter Dosage"
+                  name="dosage"
+                  value={formData.dosage}
+                  onChange={handleInputChange}
+                  className="w-full bg-transparent border-2 border-[#FA6A28] text-white p-3 mb-6 rounded-md focus:outline-none"
+                />
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter Timing"
+                  name="timing"
+                  value={formData.timing}
+                  onChange={handleInputChange}
+                  className="w-full bg-transparent border-2 border-[#FA6A28] text-white p-3 mb-6 rounded-md focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-[#FFD60A] text-black py-3 rounded-md font-semibold hover:bg-[#FFC300] transition duration-300"
+                >
+                  Add Medicine
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

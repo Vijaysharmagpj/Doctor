@@ -2,14 +2,22 @@ const FirstAid = require("../Model/FirstAid");
 
 exports.FirstAid = async (req, res) => {
   try {
-    const newFirstAid =  new FirstAid(req.body);
+    const { diseaseName, medicineName, dosage, timing } = req.body;
+
+    const newFirstAid = new FirstAid({
+      diseaseName,
+      medications: [],
+    });
+
     const response = await newFirstAid.save();
+
     res.status(200).json({
       success: true,
-      message: "first aid add successfully",
+      message: "First aid added successfully",
       data: response,
     });
   } catch (error) {
+    console.error("Error adding first aid:", error.message);
     res.status(500).json({
       success: false,
       message: "Something went wrong while adding a first aid",
@@ -18,27 +26,19 @@ exports.FirstAid = async (req, res) => {
   }
 };
 
-exports.getFirstAid = async (req,res) => {
-    try {
-      const {search}=req.query;
-      let query={};
-      if(search && search.trim() !==""){
-        query={
-          disease: {$regex:search,$options:"i"}
-        };
-      }
-
-        const getFirstAidDetail= await FirstAid.find(query);
-        res.status(200).json({
-            success:true,
-            message:"Fetch all data of first aid",
-            data:getFirstAidDetail,
-        })
-    } catch (error) {
-        res.status(500).json({
-            success:false,
-            message:"Something went wrong while fetching first aid data",
-            error:error.message,
-        })
-    }
-}
+exports.getFirstAid = async (req, res) => {
+  try {
+    const getFirstAidDetail = await FirstAid.find();
+    res.status(200).json({
+      success: true,
+      message: "Fetch all data of first aid",
+      data: getFirstAidDetail,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong while fetching first aid data",
+      error: error.message,
+    });
+  }
+};

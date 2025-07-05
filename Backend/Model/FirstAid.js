@@ -1,13 +1,22 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
 const firstAid = mongoose.Schema({
-    disease:{
-        type:String,
-        required:true,
+    diseaseName: {
+        type: String,
     },
-    medicine:{
-        type:String,
-        required:true,
-    }
-})
-module.exports=mongoose.model("FirstAid",firstAid);
+    medications: [
+        {
+            medicineName: {
+                type: String,
+            },
+            dosage: {
+                type: String,
+            },
+            timing: {
+                type: String,
+            }
+        }
+    ]
+});
+
+module.exports = mongoose.model("FirstAid", firstAid);
