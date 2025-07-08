@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import aboutus from "../../src/assets/about us.jpg"
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import cheifdoctor from "../assets/dr.pk sharma.jpg"
 
 const About = () => {
   const navigate=useNavigate();
@@ -54,7 +55,7 @@ const About = () => {
     <div className="flex flex-col lg:flex-row items-center lg:space-x-12 space-y-8 lg:space-y-0">
       <div className="image lg:w-1/3">
         <img
-          src="https://via.placeholder.com/400x300?text=Chief+Doctor"
+          src={cheifdoctor}
           alt="chief doctor"
           className="w-full rounded-lg shadow-xl"
         />

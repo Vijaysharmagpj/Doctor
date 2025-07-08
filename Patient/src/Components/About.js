@@ -4,10 +4,11 @@ import Footer from "./Footer";
 import aboutus from "../../src/assets/about us.jpg";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import cheifdoctor from "../assets/dr.pk sharma.jpg"
 
 const About = () => {
   const navigate = useNavigate();
-  const navigateletConnect = () => {
+  const handleConnectClick = () => {
     navigate("/contact");
   };
   return (
@@ -19,7 +20,7 @@ const About = () => {
           <div className="text lg:w-1/2 space-y-6">
             <h2 className="text-4xl font-bold text-[#18BCFC]">About Us</h2>
             <button
-              onClick={navigateletConnect}
+              onClick={handleConnectClick}
               className="bg-[#FFD60A] text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300"
             >
               Let's Connect
@@ -57,7 +58,7 @@ const About = () => {
           <div className="flex flex-col lg:flex-row items-center lg:space-x-12 space-y-8 lg:space-y-0">
             <div className="image lg:w-1/3">
               <img
-                src="https://via.placeholder.com/400x300?text=Chief+Doctor"
+                src={cheifdoctor}
                 alt="chief doctor"
                 className="w-full rounded-lg shadow-xl"
               />
