@@ -43,27 +43,42 @@ const Firstaid = () => {
   }, []);
 
   // Handle input changes and update the state
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    if (name === "diseaseName") {
+  };
+
+  useEffect(() => {
+    const fetchMedicineForDisease = async () => {
+      if (!formData.diseaseName) {
+        setSelectedDiseaseData(null);
+        return;
+      }
+
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/doctor/getfirstAid?search=${value}`
+          `http://localhost:4000/api/doctor/getfirstAid?search=${formData.diseaseName}`
         );
         if (response.data?.data?.length > 0) {
-          setSelectedDiseaseData(response.data.data[0]);
+          const matched = response.data.data.find(
+            (item) =>
+              item.diseaseName.toLowerCase() ===
+              formData.diseaseName.toLowerCase()
+          );
+          setSelectedDiseaseData(matched || null);
         } else {
           setSelectedDiseaseData(null);
         }
       } catch (error) {
         console.error("Error fetching medicines:", error);
       }
-    }
-  };
+    };
+
+    fetchMedicineForDisease();
+  }, [formData.diseaseName]);
 
   // handlediseaseNameChange
   const handlediseaseNameChange = (e) => {
@@ -98,7 +113,34 @@ const Firstaid = () => {
   };
 
   // Handle form submit (for adding medicine)
-  const handleSubmit = async (e) => { };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `http://localhost:4000/api/doctor/updatefirstAid/${selectedDiseaseData._id}`,
+        {
+          medicineName: formData.medicineName,
+          dosage: formData.dosage,
+          timing: formData.timing,
+        }
+      );
+
+      if (response.data.success) {
+        toast.success("Medicine updated successfully");
+
+        setFormData({
+          search: "",
+          diseaseName: "",
+          medicineName: "",
+          dosage: "",
+          timing: "",
+        });
+      }
+    } catch (error) {
+      console.error("Update failed", error);
+      toast.error("Failed to update medicine");
+    }
+  };
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -146,8 +188,8 @@ const Firstaid = () => {
               <MdOutlineSearch className="text-[#FA6A28] text-2xl" />
             </div>
             {searchTerm.trim() !== "" &&
-              Array.isArray(firstAidData) &&
-              firstAidData.length > 0 ? (
+            Array.isArray(firstAidData) &&
+            firstAidData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                 {firstAidData.map((item, index) => (
                   <div
@@ -185,7 +227,9 @@ const Firstaid = () => {
               <h2 className="text-3xl font-bold text-[#18BCFC] mb-4">
                 Medicines for Selected Disease
               </h2>
-              <p className="text-lg mb-6">Available Medicines for the Selected Disease</p>
+              <p className="text-lg mb-6">
+                Available Medicines for the Selected Disease
+              </p>
               <div className="bg-[#001D3D] p-6 rounded-lg shadow-md">
                 <form onSubmit={handleDisease}>
                   <input
@@ -215,26 +259,37 @@ const Firstaid = () => {
                     selectedDiseaseData.medications.map((med, index) => (
                       <div key={index} className="mb-3">
                         <p>
-                          <span className="text-[#FFD60A] font-semibold">Disease:</span>{" "}
+                          <span className="text-[#FFD60A] font-semibold">
+                            Disease:
+                          </span>{" "}
                           {selectedDiseaseData.diseaseName} &nbsp;
-                          <span className="text-[#FA6A28] font-semibold">Medicine:</span>{" "}
+                          <span className="text-[#FA6A28] font-semibold">
+                            Medicine:
+                          </span>{" "}
                           {med.medicineName} &nbsp;
-                          <span className="text-[#18BCFC] font-semibold">Dosage:</span>{" "}
+                          <span className="text-[#18BCFC] font-semibold">
+                            Dosage:
+                          </span>{" "}
                           {med.dosage} &nbsp;
-                          <span className="text-[#FF6A3D] font-semibold">Timing:</span>{" "}
+                          <span className="text-[#FF6A3D] font-semibold">
+                            Timing:
+                          </span>{" "}
                           {med.timing}
                         </p>
                         <hr className="border-t border-[#FA6A28] mt-2" />
                       </div>
                     ))
                   ) : (
-                    <p className="text-gray-400">No medicines found for this disease.</p>
+                    <p className="text-gray-400">
+                      No medicines found for this disease.
+                    </p>
                   )
                 ) : (
-                  <p className="text-gray-400">Select a disease to view medicines.</p>
+                  <p className="text-gray-400">
+                    Select a disease to view medicines.
+                  </p>
                 )}
               </div>
-
             </div>
 
             {/* Right Column: Add Medicine */}
