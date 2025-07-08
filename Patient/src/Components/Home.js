@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import caredoctor from "../../src/assets/care doctor.jpg";
+import maindoctor from "../../src/assets/dr.pk sharma.jpg"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Home = () => {
           </div>
           <div className="doctor-pic lg:w-1/2">
             <img
-              src=""
+              src={maindoctor}
               alt="Main doctor pic"
               className="w-full rounded-lg shadow-xl"
             />

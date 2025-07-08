@@ -29,11 +29,11 @@ const PathRouter = () => {
         <Route path="/firstaid" element={<First_aid />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/bookappointment" element={<BookAppointment/>}/>
-        <Route path="/404page" element={<Error404/>}/>
         <Route path="/bookappointmentlist" element={<BookAppointmentList/>}/>
         <Route path="/patientlist" element={<PatientList/>}/>
         <Route path="/forgetpassword" element={<ForgetPassword/>}/>
         <Route path="/otp" element={<OTP/>}/>
+        <Route path="*" element={<Error404/>}/>
 
         <Route path="/" element={<LoginForm/>} />
         <Route path="/signup" element={<SignupForm/>} />
