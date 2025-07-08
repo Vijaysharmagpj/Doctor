@@ -203,48 +203,37 @@ const Firstaid = () => {
                       key={index}
                       className="bg-[#003566] border border-[#FA6A28] rounded-xl shadow-lg p-4 text-white hover:scale-105 transition-transform duration-300"
                     >
-                      <div>
-                        <p className="text-lg font-semibold text-[#FA6A28] mb-2">
-                          Medicines
-                        </p>
-                        {item.medications && item.medications.length > 0 ? (
-                          item.medications.map((med, i) => (
-                            <div
-                              key={i}
-                              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-white border-b border-[#FA6A28] pb-3 mb-3 px-2"
-                            >
-                              <div className="flex flex-col items-start sm:items-center sm:flex-row gap-4 w-full justify-between">
-                                <div className="flex flex-col items-start">
-                                  <span className="text-[#FA6A28] font-semibold">
-                                    Disease
-                                  </span>
-                                  <span>{item.diseaseName}</span>
-                                </div>
-                                <div className="flex flex-col items-start">
-                                  <span className="text-[#FFD60A] font-semibold">
-                                    Medicine
-                                  </span>
-                                  <span>{med.medicineName}</span>
-                                </div>
-                                <div className="flex flex-col items-start">
-                                  <span className="text-[#18BCFC] font-semibold">
-                                    Dosage
-                                  </span>
-                                  <span>{med.dosage}</span>
-                                </div>
-                                <div className="flex flex-col items-start">
-                                  <span className="text-[#FF6A3D] font-semibold">
-                                    Timing
-                                  </span>
-                                  <span>{med.timing}</span>
-                                </div>
-                              </div>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-gray-400">No medicines found</p>
-                        )}
-                      </div>
+<div>
+  <p className="text-lg font-semibold text-[#FA6A28] mb-2">Medicines:</p>
+  {item.medications && item.medications.length > 0 ? (
+    item.medications.map((med, i) => (
+      <div
+        key={i}
+        className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border border-[#FA6A28] rounded-md p-3 mb-3 bg-[#003566] text-sm text-white"
+      >
+        <div>
+          <span className="text-[#FA6A28] font-semibold">Disease: </span>
+          <span>{item.diseaseName}</span>
+        </div>
+        <div>
+          <span className="text-[#FFD60A] font-semibold">Medicine: </span>
+          <span>{med.medicineName}</span>
+        </div>
+        <div>
+          <span className="text-[#18BCFC] font-semibold">Dosage: </span>
+          <span>{med.dosage}</span>
+        </div>
+        <div>
+          <span className="text-[#FF6A3D] font-semibold">Timing: </span>
+          <span>{med.timing}</span>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="text-gray-400">No medicines found</p>
+  )}
+</div>
+
                     </div>
                   ))}
               </div>
