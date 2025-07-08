@@ -187,30 +187,66 @@ const Firstaid = () => {
               />
               <MdOutlineSearch className="text-[#FA6A28] text-2xl" />
             </div>
+
             {searchTerm.trim() !== "" &&
             Array.isArray(firstAidData) &&
             firstAidData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                {firstAidData.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[#003566] border border-[#FA6A28] rounded-xl shadow-lg p-4 text-white hover:scale-105 transition-transform duration-300"
-                  >
-                    {console.log(item)}
-                    <div className="mb-2">
-                      <p className="text-lg font-semibold text-[#FA6A28]">
-                        Disease:
-                      </p>
-                      <p className="text-base">{item.medications}</p>
+                {firstAidData
+                  .filter((item) =>
+                    item.diseaseName
+                      ?.toLowerCase()
+                      .includes(searchTerm.trim().toLowerCase())
+                  )
+                  .map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[#003566] border border-[#FA6A28] rounded-xl shadow-lg p-4 text-white hover:scale-105 transition-transform duration-300"
+                    >
+                      <div>
+                        <p className="text-lg font-semibold text-[#FA6A28] mb-2">
+                          Medicines
+                        </p>
+                        {item.medications && item.medications.length > 0 ? (
+                          item.medications.map((med, i) => (
+                            <div
+                              key={i}
+                              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-white border-b border-[#FA6A28] pb-3 mb-3 px-2"
+                            >
+                              <div className="flex flex-col items-start sm:items-center sm:flex-row gap-4 w-full justify-between">
+                                <div className="flex flex-col items-start">
+                                  <span className="text-[#FA6A28] font-semibold">
+                                    Disease
+                                  </span>
+                                  <span>{item.diseaseName}</span>
+                                </div>
+                                <div className="flex flex-col items-start">
+                                  <span className="text-[#FFD60A] font-semibold">
+                                    Medicine
+                                  </span>
+                                  <span>{med.medicineName}</span>
+                                </div>
+                                <div className="flex flex-col items-start">
+                                  <span className="text-[#18BCFC] font-semibold">
+                                    Dosage
+                                  </span>
+                                  <span>{med.dosage}</span>
+                                </div>
+                                <div className="flex flex-col items-start">
+                                  <span className="text-[#FF6A3D] font-semibold">
+                                    Timing
+                                  </span>
+                                  <span>{med.timing}</span>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="text-gray-400">No medicines found</p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-lg font-semibold text-[#FA6A28]">
-                        Medicine:
-                      </p>
-                      <p className="text-base">{item.medicine}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             ) : (
               searchTerm.trim() !== "" && (
