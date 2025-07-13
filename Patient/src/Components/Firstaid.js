@@ -35,7 +35,7 @@ const Firstaid = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-[#000814] text-gray-300 py-12 px-4">
+      <div className="bg-[#000814] text-gray-300 py-20 px-4">
         <div className="container mx-auto space-y-12">
           {/* Search Section */}
           <div className="text-center mt-[50px]">
