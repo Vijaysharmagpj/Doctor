@@ -102,7 +102,11 @@ const handleDisease = async (e) => {
     );
 
     if (response.data.success) {
+      const newDisease = diseaseNameMaster.masterdiseaseName;
+
       setdiseaseNameMaster({ masterdiseaseName: "" });
+
+      setDiseaseOptions((prevOptions) => [...prevOptions, newDisease]);
       toast.success("Disease added successfully");
     } else {
       toast.error(response.data.message || "Something went wrong");
