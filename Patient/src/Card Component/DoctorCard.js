@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const DoctorCard = () => {
   const navigate = useNavigate();
-  const navigateAppointment = () => {
-    navigate("/bookappointment");
+  const navigateAppointment = (doctorName) => {
+    navigate("/bookappointment", { state: { doctorName } });
   };
 
   return (
@@ -35,7 +35,7 @@ const DoctorCard = () => {
               <p className="text-md text-gray-500">{data.location}</p>
               <div className="flex justify-center mt-4">
                 <button
-                  onClick={navigateAppointment}
+                  onClick={() => navigateAppointment(data.name)}
                   className="bg-[#FFD60A] text-black px-6 py-2 rounded-lg text-lg font-semibold hover:bg-[#E2B609] transition-all duration-300"
                 >
                   Book Appointment

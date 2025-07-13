@@ -4,15 +4,22 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { DoctorData } from "../Data/DoctorData";
+import { useLocation } from "react-router-dom";
 
 const BookAppointment = () => {
+
+  
+  const location=useLocation();
+  const PreselectedDoctor=location.state?.doctorName || "";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     date: "",
     time: "",
-    doctor: "",
+    doctor: PreselectedDoctor,
     disease: "",
   });
 
@@ -137,11 +144,11 @@ const BookAppointment = () => {
                     <option value="" disabled>
                       Select Doctor
                     </option>
-                    <option>Dr. Smith</option>
-                    <option>Dr. John</option>
-                    <option>Dr. Emily</option>
-                    <option>Dr. Rose</option>
-                    <option>Dr. Mark</option>
+                    {DoctorData.map((doctor,index)=>(
+                      <option key={index} value={doctor.name}>
+                      {doctor.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
