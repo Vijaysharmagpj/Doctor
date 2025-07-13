@@ -4,8 +4,24 @@ exports.FirstAid = async (req, res) => {
   try {
     const { diseaseName, medicineName, dosage, timing } = req.body;
 
+    // Convert input to lowercase to ensure case-insensitive comparison
+    const normalizedDisease = diseaseName.trim().toLowerCase();
+
+    // Check if a disease with same name already exists (case-insensitive)
+    const existingDisease = await FirstAid.findOne({
+      diseaseName: { $regex: new RegExp(`^${normalizedDisease}$`, "i") }
+    });
+
+    if (existingDisease) {
+      return res.status(400).json({
+        success: false,
+        message: "Disease already exists in first aid list",
+      });
+    }
+
+    // Add new FirstAid entry if not existing
     const newFirstAid = new FirstAid({
-      diseaseName,
+      diseaseName: diseaseName.trim(),
       medications: [],
     });
 
@@ -16,6 +32,7 @@ exports.FirstAid = async (req, res) => {
       message: "First aid added successfully",
       data: response,
     });
+
   } catch (error) {
     console.error("Error adding first aid:", error.message);
     res.status(500).json({
@@ -26,7 +43,7 @@ exports.FirstAid = async (req, res) => {
   }
 };
 
-// update api for particular medicineName
+
 exports.updateFirstAid = async (req, res) => {
   const { id } = req.params;
   const { medicineName, dosage, timing } = req.body;

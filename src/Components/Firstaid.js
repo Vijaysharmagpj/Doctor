@@ -91,26 +91,33 @@ const Firstaid = () => {
     console.log(diseaseNameMaster);
   };
 
-  const handleDisease = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/api/doctor/firstAid",
-        {
-          diseaseName: diseaseNameMaster.masterdiseaseName,
-        }
-      );
-      if (response.data) {
-        setdiseaseNameMaster({
-          diseaseNameMaster: "",
-        });
-        toast.success("Medicine added successfully");
+const handleDisease = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+      "http://localhost:4000/api/doctor/firstAid",
+      {
+        diseaseName: diseaseNameMaster.masterdiseaseName,
       }
-    } catch (error) {
-      console.log(error);
+    );
+
+    if (response.data.success) {
+      setdiseaseNameMaster({ masterdiseaseName: "" });
+      toast.success("Disease added successfully");
+    } else {
+      toast.error(response.data.message || "Something went wrong");
+    }
+  } catch (error) {
+    console.log(error);
+
+    if (error.response && error.response.data && error.response.data.message) {
+      toast.error(error.response.data.message);
+    } else {
       toast.error("Something went wrong");
     }
-  };
+  }
+};
+
 
   // Handle form submit (for adding medicine)
   const handleSubmit = async (e) => {
