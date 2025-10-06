@@ -65,10 +65,6 @@ const Navbar = ({ appointmentCount }) => {
             >
               <LuInstagram />
             </a>
-              {/* <MdNotificationsActive 
-                onClick={handleNotification}
-              className="hover:text-gray-300 cursor-pointer"
-              /> */}
               <div className="relative">
       <MdNotificationsActive
         onClick={handleNotification}
