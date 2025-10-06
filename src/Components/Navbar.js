@@ -8,7 +8,7 @@ import { IoMdLogOut } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navbar = () => {
+const Navbar = ({ appointmentCount }) => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -65,10 +65,23 @@ const Navbar = () => {
             >
               <LuInstagram />
             </a>
-              <MdNotificationsActive 
+              {/* <MdNotificationsActive 
                 onClick={handleNotification}
               className="hover:text-gray-300 cursor-pointer"
-              />
+              /> */}
+              <div className="relative">
+      <MdNotificationsActive
+        onClick={handleNotification}
+        className="hover:text-gray-300 cursor-pointer text-2xl"
+      />
+      {appointmentCount > 0 && (
+        <span
+          className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+        >
+          {appointmentCount}
+        </span>
+      )}
+    </div>
           </div>
 
           <div className="flex items-center text-sm">

@@ -34,7 +34,7 @@ const BookAppointmentList = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar appointmentCount={appointmentDataList.length} />
       <div className="p-6 min-h-screen" style={{ backgroundColor: "#171C26" }}>
         <h2
           className="text-3xl font-bold text-center mb-6 mt-[70px]"
