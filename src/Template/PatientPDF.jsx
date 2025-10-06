@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import report from "../assets/report.png";
 
 const PatientPDF = () => {
-  const [patientList, setPatientLists] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { patient } = location.state || {}; // 👈 Patient data from navigate()
 
-  const fetchPatientList = async () => {
-    try {
-      const res = await axios.get("http://localhost:4000/api/doctor/getTreatment");
-      if (res.data.success) {
-        setPatientLists(res.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPatientList();
-  }, []);
+  if (!patient) {
+    return (
+      <div className="text-center mt-20 text-gray-700">
+        <p>No patient data found.</p>
+        <button
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          onClick={() => navigate("/patientlist")}
+        >
+          Go Back
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f0f4ff] to-[#ffffff] px-4 py-6 md:px-12 text-black">
@@ -55,53 +56,44 @@ const PatientPDF = () => {
         🎓 Ex-Lecturer — R.D.K Homeopathic Medical College & Hospital, Motihari
       </div>
 
-      {/* Patient Records */}
-      {patientList.length > 0 ? (
-        patientList.map((patient, index) => (
-          <div
-            key={index}
-            className="bg-white p-6 rounded-lg shadow-md mb-8 border-l-4 border-blue-500"
-          >
-            <h2 className="text-xl font-semibold text-blue-700 mb-4 border-b border-blue-200 pb-2">
-              📄 Patient Record #{index + 1}
-            </h2>
+      {/* Single Patient Record */}
+      <div className="bg-white p-6 rounded-lg shadow-md mb-8 border-l-4 border-blue-500">
+        <h2 className="text-xl font-semibold text-blue-700 mb-4 border-b border-blue-200 pb-2">
+          📄 Patient Report — {patient.name}
+        </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm leading-6 text-gray-700">
-              <p><strong>🔖 Ref. No:</strong> {patient.refNo}</p>
-              <p><strong>👤 Name:</strong> {patient.name}</p>
-              <p><strong>🏠 Address:</strong> {patient.address}</p>
-              <p><strong>🩺 Thir:</strong> {patient.thir}</p>
-              <p><strong>📅 App:</strong> {patient.app}</p>
-              <p><strong>⚧️ Gender:</strong> {patient.gender}</p>
-              <p><strong>🕊️ Religion:</strong> {patient.religion}</p>
-              <p><strong>🎂 Age:</strong> {patient.age}</p>
-              <p><strong>📏 Height:</strong> {patient.height}</p>
-              <p><strong>🧠 Mind:</strong> {patient.mind}</p>
-              <p><strong>🗓️ Date:</strong> {patient.date ? new Date(patient.date).toLocaleDateString("en-GB") : "-"}</p>
-              <p><strong>🍽️ Desire:</strong> {patient.desire}</p>
-              <p><strong>⚖️ Weight:</strong> {patient.weight}</p>
-              <p><strong>🩻 Adct:</strong> {patient.adct}</p>
-              <p><strong>💦 Swt:</strong> {patient.swt}</p>
-              <p><strong>👅 Tng:</strong> {patient.tng}</p>
-              <p><strong>🫁 NGl:</strong> {patient.ngl}</p>
-              <p><strong>🩸 BP:</strong> {patient.bp}</p>
-              <p><strong>🧪 Prt:</strong> {patient.prt}</p>
-              <p><strong>🩹 Hc:</strong> {patient.hc}</p>
-              <p><strong>📐 Chest:</strong> {patient.chest}</p>
-              <p><strong>🧬 Ph:</strong> {patient.ph}</p>
-              <p><strong>🧬 Fh:</strong> {patient.fh}</p>
-              <p><strong>💬 Complain:</strong> {patient.complain}</p>
-              <p><strong>📆 Prescription Date:</strong> {patient.prescriptionDate ? new Date(patient.prescriptionDate).toLocaleDateString("en-GB") : "-"}</p>
-              <p><strong>📌 Follow-Up:</strong> {patient.followUp}</p>
-              <p><strong>💊 Rx:</strong> {patient.rx}</p>
-              <p><strong>🗒️ Medicine Course:</strong> {patient.medicineCourse}</p>
-              <p><strong>📅 Days:</strong> {patient.days}</p>
-            </div>
-          </div>
-        ))
-      ) : (
-        <p className="text-center text-gray-500 mt-10">No patient data found.</p>
-      )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm leading-6 text-gray-700">
+          <p><strong>🔖 Ref. No:</strong> {patient.refNo}</p>
+          <p><strong>👤 Name:</strong> {patient.name}</p>
+          <p><strong>🏠 Address:</strong> {patient.address}</p>
+          <p><strong>🩺 Thir:</strong> {patient.thir}</p>
+          <p><strong>📅 App:</strong> {patient.app}</p>
+          <p><strong>⚧️ Gender:</strong> {patient.gender}</p>
+          <p><strong>🕊️ Religion:</strong> {patient.religion}</p>
+          <p><strong>🎂 Age:</strong> {patient.age}</p>
+          <p><strong>📏 Height:</strong> {patient.height}</p>
+          <p><strong>🧠 Mind:</strong> {patient.mind}</p>
+          <p><strong>🗓️ Date:</strong> {patient.date ? new Date(patient.date).toLocaleDateString("en-GB") : "-"}</p>
+          <p><strong>🍽️ Desire:</strong> {patient.desire}</p>
+          <p><strong>⚖️ Weight:</strong> {patient.weight}</p>
+          <p><strong>🩻 Adct:</strong> {patient.adct}</p>
+          <p><strong>💦 Swt:</strong> {patient.swt}</p>
+          <p><strong>👅 Tng:</strong> {patient.tng}</p>
+          <p><strong>🫁 NGl:</strong> {patient.ngl}</p>
+          <p><strong>🩸 BP:</strong> {patient.bp}</p>
+          <p><strong>🧪 Prt:</strong> {patient.prt}</p>
+          <p><strong>🩹 Hc:</strong> {patient.hc}</p>
+          <p><strong>📐 Chest:</strong> {patient.chest}</p>
+          <p><strong>🧬 Ph:</strong> {patient.ph}</p>
+          <p><strong>🧬 Fh:</strong> {patient.fh}</p>
+          <p><strong>💬 Complain:</strong> {patient.complain}</p>
+          <p><strong>📆 Prescription Date:</strong> {patient.prescriptionDate ? new Date(patient.prescriptionDate).toLocaleDateString("en-GB") : "-"}</p>
+          <p><strong>📌 Follow-Up:</strong> {patient.followUp}</p>
+          <p><strong>💊 Rx:</strong> {patient.rx}</p>
+          <p><strong>🗒️ Medicine Course:</strong> {patient.medicineCourse}</p>
+          <p><strong>📅 Days:</strong> {patient.days}</p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -6,14 +6,19 @@ import { RiDeleteBin3Fill } from "react-icons/ri";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import PatientPDF from "../../src/Template/PatientPDF";
+import { useNavigate } from "react-router-dom";
 
-const PatientList = () => {
+const PatientList = ({ patients }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [patientList, setPatientLists] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+const handleDownload = (patient) => {
+  navigate("/reportDoctor", { state: { patient } });
+};
+
 
   const fetchPatientList = async () => {
     try {
@@ -138,25 +143,10 @@ const PatientList = () => {
                     >
                       <RiDeleteBin3Fill />
                     </button>
-                    <PDFDownloadLink
-                      document={<PatientPDF />}
-                      fileName="Patient_Details.pdf"
-                    >
-                      {({ loading }) =>
-                        loading ? (
-                          <button
-                            className="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
-                            disabled
-                          >
-                            Generating...
-                          </button>
-                        ) : (
-                          <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 flex items-center gap-2">
+                      <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 flex items-center gap-2"
+                      onClick={() => handleDownload(patient)}>
                             <FaCloudDownloadAlt />
-                          </button>
-                        )
-                      }
-                    </PDFDownloadLink>
+                      </button>
                   </td>
                 </tr>
               ))}
