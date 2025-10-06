@@ -13,7 +13,16 @@ const BookAppointmentList = () => {
           "http://localhost:4000/api/doctor/getBookAppointment"
         );
         if (res.data.success) {
-          setAppointmentDataList(res.data.data);
+          const validAppointments = res.data.data.filter((appointment) => {
+            const today = new Date();
+            const [hours, minutes] = appointment.time.split(":");
+            const appointmentDateTime = new Date(appointment.date);
+            appointmentDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+
+            return appointmentDateTime >= today;
+          });
+
+          setAppointmentDataList(validAppointments);
         }
       } catch (error) {
         console.log("Error occur in get book appointment", error);
@@ -73,11 +82,8 @@ const BookAppointmentList = () => {
                       {appointmentList.phoneNumber}
                     </td>
                     <td className="p-3 border-b border-gray-600 text-center">
-                      {new Date(appointmentList.date).toLocaleDateString(
-                        "en-GB"
-                      )}
+                      {new Date(appointmentList.date).toLocaleDateString("en-GB")}
                     </td>
-
                     <td className="p-3 border-b border-gray-600 text-center">
                       {appointmentList.time}
                     </td>
